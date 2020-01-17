@@ -5,29 +5,30 @@ const util = require('../util/util');
 
 
 var login = (req, resp) => {
-  var user = qs.parse(req.body);
-  if (!user || !user.name || !user.pwd || !user.rule) {
-    resp.json(msgResult.error("参数不合法"));
-    return;
-  }
-  let sql = "select * from user where unionid = ? and password = ?";
-  if (user.rule != "user") {
-    sql = "select * from user where unionid = ? and password = ? and rule = 1"
-  }
-  mysqlOpt.exec(
-    sql,
-    mysqlOpt.formatParams(user.name, user.pwd),
-    res => {
-      if (res.length > 0) {
-        resp.json(msgResult.msg({nick: res[0].username, id: res[0].id}));
-      } else {
-        resp.json(msgResult.error("用户名或者密码错误"));
-      }
-    },
-    e => {
-      resp.end(msgResult.error(e.message));
-    }
-  )
+  resp.json(msgResult.msg('成功访问'));
+  // var user = qs.parse(req.body);
+  // if (!user || !user.name || !user.pwd || !user.rule) {
+  //   resp.json(msgResult.error("参数不合法"));
+  //   return;
+  // }
+  // let sql = "select * from user where unionid = ? and password = ?";
+  // if (user.rule != "user") {
+  //   sql = "select * from user where unionid = ? and password = ? and rule = 1"
+  // }
+  // mysqlOpt.exec(
+  //   sql,
+  //   mysqlOpt.formatParams(user.name, user.pwd),
+  //   res => {
+  //     if (res.length > 0) {
+  //       resp.json(msgResult.msg({nick: res[0].username, id: res[0].id}));
+  //     } else {
+  //       resp.json(msgResult.error("用户名或者密码错误"));
+  //     }
+  //   },
+  //   e => {
+  //     resp.end(msgResult.error(e.message));
+  //   }
+  // )
 };
 
 var register = (req, resp) => {
