@@ -11,19 +11,38 @@ var login = (req, resp) => {
   let data = qs.parse(req.body);
   // console.log(data);
   let code = data.code;
+  let unionid = data.unionid;
   let code2Session;
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
-  https.get(url, data => {
-    var str="";
-    data.on("data",function(chunk){
-        str+=chunk;//监听数据响应，拼接数据片段
-    })
-    data.on("end",function(){
-      console.log(str.toString())
-      code2Session = JSON.parse(str.toString());
-      getId();
-    })
-  });
+  
+  
+  if (unionid) {
+    mysqlOpt.exec(
+      "insert into user (unionid) values (?)",
+      mysqlOpt.formatParams(unionid),
+      () => {
+        resp.json(msgResult.msg("登录并保存成功"));
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("用户数据保存错误"));
+      }
+    );
+  }
+  getSessionKey();
+  function getSessionKey () {
+    https.get(url, data => {
+      var str="";
+      data.on("data",function(chunk){
+          str+=chunk;//监听数据响应，拼接数据片段
+      })
+      data.on("end",function(){
+        console.log(str.toString())
+        code2Session = JSON.parse(str.toString());
+        getId();
+      })
+    });
+  }
 
   // if (!user || !user.name || !user.pwd || !user.rule) {
   //   resp.json(msgResult.error("参数不合法"));
