@@ -1,0 +1,5 @@
+
+> qzapi@1.0.0 start /home/janesummer/myshare/sincere-hire-back-end
+> node ./module/app.js
+
+开启成功：http://localhost:8888
