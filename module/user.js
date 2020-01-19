@@ -16,7 +16,7 @@ var login = (req, resp) => {
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
   
   
-  if (unionid) {
+  if (unionid && unionid != "") {
     mysqlOpt.exec(
       "insert into user (unionid) values (?)",
       mysqlOpt.formatParams(unionid),
@@ -45,7 +45,13 @@ var login = (req, resp) => {
       data.on("end",function(){
         console.log(str.toString())
         code2Session = JSON.parse(str.toString());
-        getId();
+        if (code2Session.unionId) {
+          resp.json(msgResult.msg({
+            unionid: code2Session.unionId
+          }));
+        } else {
+          getId();
+        }
       })
     });
   }
