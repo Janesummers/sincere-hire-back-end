@@ -25,7 +25,13 @@ var login = (req, resp) => {
       },
       e => {
         console.log(msgResult.error(e.message));
-        resp.json(msgResult.error("用户数据保存错误"));
+        if (msgResult.error(e.message).indexOf("for key 'PRIMARY'") != -1) {
+          resp.json(msgResult.msg({
+            unionid
+          }));
+        } else {
+          resp.json(msgResult.error("用户数据保存错误"));
+        }
       }
     );
   }
