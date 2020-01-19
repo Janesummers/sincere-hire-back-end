@@ -317,3 +317,8 @@ ER_DUP_ENTRY: Duplicate entry 'onmaV07KFbndEt5JwBXCuIlc-cvo' for key 'PRIMARY'
   code: 'error',
   data: "ER_DUP_ENTRY: Duplicate entry 'onmaV07KFbndEt5JwBXCuIlc-cvo' for key 'PRIMARY'"
 }
+
+> qzapi@1.0.0 start /home/janesummer/myshare/sincere-hire-back-end
+> node ./module/app.js
+
+开启成功：http://localhost:8888
