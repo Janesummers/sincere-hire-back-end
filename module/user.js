@@ -39,7 +39,7 @@ var login = (req, resp) => {
               //     unionid: code2Session.unionId
               //   }));
               // }
-              resp.json(msgResult.msg('ok'));
+              resp.json(msgResult.msg(res));
               return;
             },
             e => {
