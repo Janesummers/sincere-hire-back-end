@@ -15,25 +15,6 @@ var login = (req, resp) => {
   let code2Session;
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
   
-  // if (unionid && unionid != "") {
-  //   mysqlOpt.exec(
-  //     "insert into user (unionid) values (?)",
-  //     mysqlOpt.formatParams(unionid),
-  //     () => {
-  //       resp.json(msgResult.msg("登录并保存成功"));
-  //     },
-  //     e => {
-  //       console.log(msgResult.error(e.message));
-  //       if (msgResult.error(e.message).indexOf("for key 'PRIMARY'") != -1) {
-  //         resp.json(msgResult.msg({
-  //           unionid
-  //         }));
-  //       } else {
-  //         resp.json(msgResult.error("用户数据保存错误"));
-  //       }
-  //     }
-  //   );
-  // }
   getSessionKey();
   function getSessionKey () {
     https.get(url, data => {
@@ -44,45 +25,20 @@ var login = (req, resp) => {
       data.on("end",function(){
         console.log(str.toString())
         code2Session = JSON.parse(str.toString());
-        if (unionid) {
-          saveUser();
-        }
-        function saveUser () {
-          mysqlOpt.exec(
-            "insert into user (unionid, openId) values (?,?)",
-            mysqlOpt.formatParams(unionid, code2Session.openid),
-            () => {
-              resp.json(msgResult.msg("登录并保存成功"));
-            },
-            e => {
-              console.log(msgResult.error(e.message));
-              if (msgResult.error(e.message).indexOf("for key 'PRIMARY'") != -1) {
-                resp.json(msgResult.msg({
-                  unionid
-                }));
-              } else {
-                resp.json(msgResult.error("用户数据保存错误"));
-              }
-            }
-          );
-        }
+
         getUser();
+
         function getUser () {
           mysqlOpt.exec(
             "select * from user where openId = ?",
             mysqlOpt.formatParams(code2Session.openid),
             (res) => {
               console.log(res)
-              if (res.length < 0) {
-                if (code2Session.unionId) {
-                  resp.json(msgResult.msg({
-                    unionid: code2Session.unionId
-                  }));
-                  return;
-                } else {
-                  getId();
-                }
-              }
+              // if (res.length > 0) {
+              //   resp.json(msgResult.msg({
+              //     unionid: code2Session.unionId
+              //   }));
+              // }
               resp.json(msgResult.msg('ok'));
               return;
             },
@@ -92,6 +48,30 @@ var login = (req, resp) => {
             }
           );
         }
+
+
+        // if (unionid) {
+        //   saveUser();
+        // }
+        // function saveUser () {
+        //   mysqlOpt.exec(
+        //     "insert into user (unionid, openId) values (?,?)",
+        //     mysqlOpt.formatParams(unionid, code2Session.openid),
+        //     () => {
+        //       resp.json(msgResult.msg("登录并保存成功"));
+        //     },
+        //     e => {
+        //       console.log(msgResult.error(e.message));
+        //       if (msgResult.error(e.message).indexOf("for key 'PRIMARY'") != -1) {
+        //         resp.json(msgResult.msg({
+        //           unionid
+        //         }));
+        //       } else {
+        //         resp.json(msgResult.error("用户数据保存错误"));
+        //       }
+        //     }
+        //   );
+        // }
         // if (code2Session.unionId) {
         //   resp.json(msgResult.msg({
         //     unionid: code2Session.unionId
