@@ -11,7 +11,6 @@ var login = (req, resp) => {
   let data = qs.parse(req.body);
   // console.log(data);
   let code = data.code;
-  let unionid = data.unionid;
   let code2Session;
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
   
@@ -20,7 +19,7 @@ var login = (req, resp) => {
     https.get(url, data => {
       var str="";
       data.on("data",function(chunk){
-          str+=chunk;//监听数据响应，拼接数据片段
+          str+=chunk; //监听数据响应，拼接数据片段
       })
       data.on("end",function(){
         console.log(str.toString())
@@ -47,19 +46,6 @@ var login = (req, resp) => {
             }
           );
         }
-
-
-        // if (unionid) {
-        //   saveUser();
-        // }
-        
-        // if (code2Session.unionId) {
-        //   resp.json(msgResult.msg({
-        //     unionid: code2Session.unionId
-        //   }));
-        // } else {
-        //   getId();
-        // }
       })
     });
   }
