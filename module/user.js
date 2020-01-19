@@ -46,7 +46,13 @@ var login = (req, resp) => {
       data.on("end",function(){
         console.log(str.toString())
         code2Session = JSON.parse(str.toString());
-        getId();
+        if (code2Session.unionId) {
+          resp.json(msgResult.msg({
+            unionid: code2Session.unionId
+          }));
+        } else {
+          getId();
+        }
       })
     });
   }
