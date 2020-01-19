@@ -79,6 +79,7 @@ var login = (req, resp) => {
                   resp.json(msgResult.msg({
                     unionid: code2Session.unionId
                   }));
+                  return;
                 } else {
                   getId();
                 }
