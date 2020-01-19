@@ -34,12 +34,11 @@ var login = (req, resp) => {
             mysqlOpt.formatParams(code2Session.openid),
             (res) => {
               console.log(res)
-              // if (res.length > 0) {
-              //   resp.json(msgResult.msg({
-              //     unionid: code2Session.unionId
-              //   }));
-              // }
-              resp.json(msgResult.msg(res));
+              if (res.length > 0) {
+                resp.json(msgResult.msg(res));
+              } else {
+                getId();
+              }
               return;
             },
             e => {
@@ -53,25 +52,7 @@ var login = (req, resp) => {
         // if (unionid) {
         //   saveUser();
         // }
-        // function saveUser () {
-        //   mysqlOpt.exec(
-        //     "insert into user (unionid, openId) values (?,?)",
-        //     mysqlOpt.formatParams(unionid, code2Session.openid),
-        //     () => {
-        //       resp.json(msgResult.msg("登录并保存成功"));
-        //     },
-        //     e => {
-        //       console.log(msgResult.error(e.message));
-        //       if (msgResult.error(e.message).indexOf("for key 'PRIMARY'") != -1) {
-        //         resp.json(msgResult.msg({
-        //           unionid
-        //         }));
-        //       } else {
-        //         resp.json(msgResult.error("用户数据保存错误"));
-        //       }
-        //     }
-        //   );
-        // }
+        
         // if (code2Session.unionId) {
         //   resp.json(msgResult.msg({
         //     unionid: code2Session.unionId
@@ -107,37 +88,52 @@ var login = (req, resp) => {
   // )
   function getId () {
     // console.log(data)
-    const WXBizDataCrypt = require('../util/WXBizDataCrypt')
-    var appId = 'wx2bca6a5670f63aee'
-    var sessionKey = code2Session.session_key
+    const WXBizDataCrypt = require('../util/WXBizDataCrypt');
+    var appId = 'wx2bca6a5670f63aee';
+    var sessionKey = code2Session.session_key;
     var encryptedData = decodeURIComponent(data.encryptedData);
     var iv = decodeURIComponent(data.iv);
     console.log(encryptedData);
-    var pc = new WXBizDataCrypt(appId, sessionKey)
+    var pc = new WXBizDataCrypt(appId, sessionKey);
 
-    var codes = pc.decryptData(encryptedData , iv)
+    var codes = pc.decryptData(encryptedData , iv);
 
-     console.log('解密后 data: ', codes)
+    console.log('解密后 data: ', codes);
+
+    saveUser(codes.unionId);
     
-    if (codes.unionId) {
-        mysqlOpt.exec(
-              "insert into user (unionid) values (?)",
-                    mysqlOpt.formatParams(codes.unionId),
-                          () => {
-                                  resp.json(msgResult.msg(codes));
-                                        },
-                                              e => {
-                                                      console.log(msgResult.error(e.message));
-                                                              resp.json(msgResult.error("用户数据保存错误"));
-            }
-        );
-    } else {
-        resp.json(msgResult.msg(codes));
-    }
+    // if (codes.unionId) {
+    //   mysqlOpt.exec(
+    //     "insert into user (unionid) values (?)",
+    //     mysqlOpt.formatParams(codes.unionId),
+    //     () => {
+    //       resp.json(msgResult.msg(codes));
+    //     },
+    //     e => {
+    //       console.log(msgResult.error(e.message));
+    //       resp.json(msgResult.error("用户数据保存错误"));
+    //     }
+    //   );
+    // } else {
+    //   resp.json(msgResult.msg(codes));
+    // }
 
     //resp.json(msgResult.msg(codes));
   }
   
+  function saveUser (unionid) {
+    mysqlOpt.exec(
+      "insert into user (unionid, openId) values (?,?)",
+      mysqlOpt.formatParams(unionid, code2Session.openid),
+      () => {
+        resp.json(msgResult.msg(codes));
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("用户数据保存错误"));
+      }
+    );
+  }
 
 
 };
