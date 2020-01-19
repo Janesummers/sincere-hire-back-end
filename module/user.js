@@ -16,7 +16,7 @@ var login = (req, resp) => {
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
   
   
-  if (unionid) {
+  if (unionid && unionid != "") {
     mysqlOpt.exec(
       "insert into user (unionid) values (?)",
       mysqlOpt.formatParams(unionid),
@@ -28,8 +28,9 @@ var login = (req, resp) => {
         resp.json(msgResult.error("用户数据保存错误"));
       }
     );
+  } else {
+    getSessionKey();
   }
-  getSessionKey();
   function getSessionKey () {
     https.get(url, data => {
       var str="";
@@ -73,14 +74,30 @@ var login = (req, resp) => {
     var sessionKey = code2Session.session_key
     var encryptedData = decodeURIComponent(data.encryptedData);
     var iv = decodeURIComponent(data.iv);
-    console.log(sessionKey, encryptedData, iv)
+    console.log(encryptedData);
     var pc = new WXBizDataCrypt(appId, sessionKey)
 
     var codes = pc.decryptData(encryptedData , iv)
 
-    // console.log('解密后 data: ', codes)
+     console.log('解密后 data: ', codes)
+    
+    if (codes.unionId) {
+        mysqlOpt.exec(
+              "insert into user (unionid) values (?)",
+                    mysqlOpt.formatParams(codes.unionId),
+                          () => {
+                                  resp.json(msgResult.msg(codes));
+                                        },
+                                              e => {
+                                                      console.log(msgResult.error(e.message));
+                                                              resp.json(msgResult.error("用户数据保存错误"));
+            }
+        );
+    } else {
+        resp.json(msgResult.msg(codes));
+    }
 
-    resp.json(msgResult.msg(codes));
+    //resp.json(msgResult.msg(codes));
   }
   
 
