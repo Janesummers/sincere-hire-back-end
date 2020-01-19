@@ -45,6 +45,19 @@ var login = (req, resp) => {
       data.on("end",function(){
         console.log(str.toString())
         code2Session = JSON.parse(str.toString());
+        mysqlOpt.exec(
+          "select * from user where openId = ?",
+          mysqlOpt.formatParams(code2Session.openid),
+          (res) => {
+            console.log(res)
+            resp.json(msgResult.msg('ok'));
+            return;
+          },
+          e => {
+            console.log(msgResult.error(e.message));
+            resp.json(msgResult.error(e.message));
+          }
+        );
         if (code2Session.unionId) {
           resp.json(msgResult.msg({
             unionid: code2Session.unionId
