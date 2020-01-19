@@ -122,11 +122,12 @@ var login = (req, resp) => {
   }
   
   function saveUser (unionid) {
+    console.log("unionid->>>>", unionid)
     mysqlOpt.exec(
-      "insert into user (unionid, openId) values (?,?)",
+      "insert into user (unionid,openId) values (?,?)",
       mysqlOpt.formatParams(unionid, code2Session.openid),
       () => {
-        resp.json(msgResult.msg(codes));
+        resp.json(msgResult.msg(unionid));
       },
       e => {
         console.log(msgResult.error(e.message));
