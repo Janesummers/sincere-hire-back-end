@@ -3,11 +3,39 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const WebSocket = require('ws');
+const Base64 = require('js-base64').Base64;
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "static")));
 app.disable('x-powered-by');
+
+//引入ws模块
+
+//创建服务 port是端口
+// const wss = new WebSocket.Server({ port: 8085});
+const wss = new WebSocket.Server({ noServer: true, port: 8085 });
+//客户端连接时会进这个
+wss.on('connection', function connection(ws, req) {
+  let unionid = req.headers.unionid;
+  unionid = Base64.decode(unionid)
+  ws.unionid = unionid;
+  console.log('连接成功', `数量：${Array.from(wss.clients).length}`);
+  //客户端发送消息时会触发这个
+  ws.on('message', function incoming(data) {
+    let {msg, client, to} = JSON.parse(data);
+    to = Base64.decode(to);
+    client = Base64.decode(client);
+    console.log('收到消息', msg, '来自：', client, '发送给：', to);
+    //data是客户端发送的消息，这里clients.foreach是广播给所有客户端
+    wss.clients.forEach((client) => {
+      if (client.unionid === to) {
+        client.send(msg);
+      }
+    });
+  });
+});
 
 /**
  * 全系统允许跨域处理 这段配置要再new出express实例的时候就要设置了
