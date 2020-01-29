@@ -29,28 +29,33 @@
 //     wss.broadcast();
 // })
 
-var https=require('https');
-var ws=require('ws');
-var fs=require('fs');
-var keypath= "/root/ssl/www.chiens.cn.key";//我把秘钥文件放在运行命令的目录下测试
-var certpath= "/root/ssl/www.chiens.cn_bundle.crt";//console.log(keypath);
-//console.log(certpath);
+const https = require('http');
+const ws = require('ws');
+const fs = require('fs');
+const path = require('path');
+// const keypath = path.resolve(__dirname, "./www.chiens.cn.key");
+// const certpath= path.resolve(__dirname, "./1_www.chiens.cn_bundle.crt");
 
-var options = {
- key: fs.readFileSync(keypath),
- cert: fs.readFileSync(certpath)
-};
+// const options = {
+//   key: fs.readFileSync(keypath),
+//   cert: fs.readFileSync(certpath)
+// };
 
-var server=https.createServer(options, function (req, res) {//要是单纯的https连接的话就会返回这个东西
- res.writeHead(403);//403即可
+//要是单纯的https连接的话就会返回这个东西
+const server = https.createServer(function (req, res) {
+ res.writeHead(403); //403即可
  res.end("This is a WebSockets server!\n");
-}).listen(8085);
+}).listen(8085, () => {
+    console.log('启动成功')
+});
 
-var wss = new ws.Server( { server: server } );//把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
+//把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
+var wss = new ws.Server( { server: server, path: '/chat' } );
+
 //同样，如果丢进去的是个http服务的话那么创建出来的还是无加密的ws服务
 wss.on( 'connection', function ( wsConnect ) {
-    console.log('连接成功')
- wsConnect.on( 'message', function ( message ) {
-  console.log( message );
- });
+  console.log('连接成功')
+  wsConnect.on( 'message', function ( message ) {
+    console.log( message );
+  });
 });
