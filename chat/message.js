@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 
 function save (msg, client, to, time) {
-  let path1 = path.join(__dirname,`/chat/${client}_${to}.json`);
-  let path2 = path.join(__dirname,`/chat/${to}_${client}.json`);
+  let path1 = path.join(__dirname,`../record/${client}_${to}.json`);
+  let path2 = path.join(__dirname,`../record/${to}_${client}.json`);
   let data = {
     data: msg,
     sendId: client,
