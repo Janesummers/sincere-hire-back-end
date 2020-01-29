@@ -50,7 +50,7 @@ const server = https.createServer(function (req, res) {
 });
 
 //把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
-var wss = new ws.Server( { server: server, path: '/chat' } );
+var wss = new ws.Server( { server: server } );
 
 //同样，如果丢进去的是个http服务的话那么创建出来的还是无加密的ws服务
 wss.on( 'connection', function ( wsConnect ) {
