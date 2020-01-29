@@ -1,61 +1,43 @@
-// const  https=require('https'); 
-// const url=require('url');
-// const fs=require('fs');
-// var WebSocket=require('ws');
-// var server =https.createServer().listen(8085);
-// var wss=new WebSocket.Server({ server:server });
-
-// wss.broadcast=function broadcast() {
-//     wss.clients.forEach(function each (client) {
-//         if(client.readyState==WebSocket.OPEN){
-//             client.send("开始通信吧！");
-//         }
-//     })
-// }
-// wss.on('connection',function connection(ws,req) {
-//     var s;
-//     //const location = url.parse(req.url, true);
-//     ws.on('message',function incoming(message) {
-//         console.log(message);
-//         var smg = JSON.parse(message);
-//         console.log(smg.msg + " " + smg.name);
-//         if(smg.msg!="") {
-//             s = smg.name + "说：" + smg.msg;
-//             ws.send(s);
-//         }else {
-//             ws.send("说些什么吧，别这么高冷呀")
-//         }
-//     });
-//     wss.broadcast();
-// })
-
-const https = require('http');
+const http = require('http');
 const ws = require('ws');
 const fs = require('fs');
-const path = require('path');
-// const keypath = path.resolve(__dirname, "./www.chiens.cn.key");
-// const certpath= path.resolve(__dirname, "./1_www.chiens.cn_bundle.crt");
-
-// const options = {
-//   key: fs.readFileSync(keypath),
-//   cert: fs.readFileSync(certpath)
-// };
+const Base64 = require('js-base64').Base64;
+const message = require('./message');
 
 //要是单纯的https连接的话就会返回这个东西
-const server = https.createServer(function (req, res) {
- res.writeHead(403); //403即可
- res.end("This is a WebSockets server!\n");
+const server = http.createServer((req, res) => {
+  res.writeHead(403); //403即可
+  res.end("This is a WebSockets server!\n");
 }).listen(8085, () => {
     console.log('启动成功')
 });
 
 //把创建好的https服务器丢进websocket的创建函数里，ws会用这个服务器来创建wss服务
-var wss = new ws.Server( { server: server } );
+const wss = new ws.Server( { server: server } );
 
-//同样，如果丢进去的是个http服务的话那么创建出来的还是无加密的ws服务
-wss.on( 'connection', function ( wsConnect ) {
-  console.log('连接成功')
-  wsConnect.on( 'message', function ( message ) {
-    console.log( message );
+wss.on('connection', function connection(ws, req) {
+  let unionid = req.headers.unionid;
+  unionid = Base64.decode(unionid)
+  ws.unionid = unionid;
+  console.log('连接成功', `数量：${Array.from(wss.clients).length}`);
+  //客户端发送消息时会触发这个
+  ws.on('message', function incoming(data) {
+    let {msg, client, to, time} = JSON.parse(data);
+    let filename = message.save(msg, client, to, time);
+    let data2 = fs.readFileSync(filename, 'utf8');
+    to = Base64.decode(to);
+    client = Base64.decode(client);
+    console.log('收到消息', msg, '来自：', client, '发送给：', to);
+    //data是客户端发送的消息，这里clients.foreach是广播给所有客户端
+    wss.clients.forEach((client) => {
+      if (client.unionid === to) {
+        let messages = {
+          msg,
+          all: data2.toString()
+        };
+        messages = JSON.stringify(messages);
+        client.send(messages);
+      }
+    });
   });
 });
