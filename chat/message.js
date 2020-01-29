@@ -2,8 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 function save (msg, client, to, time) {
-  let path1 = path.join(__dirname,`../record/${client}_${to}.json`);
-  let path2 = path.join(__dirname,`../record/${to}_${client}.json`);
+  let paths = path.join(__dirname,`../record`);
   let data = {
     data: msg,
     sendId: client,
@@ -12,19 +11,19 @@ function save (msg, client, to, time) {
   };
   data = JSON.stringify(data, null, 2);
   
-  if (!fs.existsSync(path1) && !fs.existsSync(path2)) {
-    fs.writeFileSync(path1, data);
-    return path1;
+  if (!fs.existsSync(`${paths}/${client}_${to}.json`) && !fs.existsSync(`${paths}/${to}_${client}.json`)) {
+    fs.writeFileSync(`${paths}/${client}_${to}.json`, data);
+    return `${paths}/${client}_${to}.json`;
   } 
   
-  if (fs.existsSync(path1)) {
-    fs.appendFileSync(path1, `,${data}`);
-    return path1;
+  if (fs.existsSync(`${paths}/${client}_${to}.json`)) {
+    fs.appendFileSync(paths, `,${data}`);
+    return `${paths}/${client}_${to}.json`;
   }
 
-  if (fs.existsSync(path2)) {
-    fs.appendFileSync(path2, `,${data}`);
-    return path2;
+  if (fs.existsSync(`${paths}/${to}_${client}.json`)) {
+    fs.appendFileSync(`${paths}/${to}_${client}.json`, `,${data}`);
+    return `${paths}/${to}_${client}.json`;
   }
   
 }
