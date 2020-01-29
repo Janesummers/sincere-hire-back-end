@@ -3,11 +3,15 @@ const app = express();
 const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
+const websocket = require('../chat/wss.js');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "static")));
 app.disable('x-powered-by');
+
+websocket.runServer();
+
 
 /**
  * 全系统允许跨域处理 这段配置要再new出express实例的时候就要设置了
