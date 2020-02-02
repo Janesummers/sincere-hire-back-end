@@ -23,7 +23,6 @@ function save (msg, client, to, time) {
     fs.appendFileSync(`${to}_${client}.json`, `,${data}`);
     return `${to}_${client}.json`;
   }
-  
 }
 
 module.exports = {
