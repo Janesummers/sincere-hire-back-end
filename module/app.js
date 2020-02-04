@@ -4,6 +4,8 @@ const bodyParser = require('body-parser');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const websocket = require('../chat/wss.js');
+const multer  = require('multer')
+const upload = multer({ dest: './tmp/' })
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -36,6 +38,18 @@ const user = require('./user');
  */
 app.post("/login", (req, resp) => {
   user.login(req, resp);
+});
+
+app.post("/saveJobSeeker", (req, resp) => {
+  user.saveJobSeeker(req, resp);
+});
+
+app.post("/userAvatarUrl", upload.single('file'), (req, resp) => {
+  user.userAvatarUrl(req, resp);
+});
+
+app.get("/userAvatar/:name", (req, resp) => {
+  user.userAvatar(req, resp);
 });
 
 const msg = require('./msg');
