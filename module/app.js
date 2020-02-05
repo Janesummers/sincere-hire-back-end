@@ -44,12 +44,30 @@ app.post("/saveJobSeeker", (req, resp) => {
   user.saveJobSeeker(req, resp);
 });
 
+app.post("/saveRecruiter", (req, resp) => {
+  user.saveRecruiter(req, resp);
+});
+
 app.post("/userAvatarUrl", upload.single('file'), (req, resp) => {
   user.userAvatarUrl(req, resp);
 });
 
 app.get("/userAvatar/:name", (req, resp) => {
   user.userAvatar(req, resp);
+});
+
+const openData = require('./openData');
+
+app.get("/getCity", (req, resp) => {
+  openData.getCity(req, resp);
+});
+
+app.get("/getSchool", (req, resp) => {
+  openData.getSchool(req, resp);
+});
+
+app.get("/getMajor", (req, resp) => {
+  openData.getMajor(req, resp);
 });
 
 const msg = require('./msg');
