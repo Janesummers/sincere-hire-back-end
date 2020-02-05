@@ -10,7 +10,6 @@ const path = require('path');
 var login = (req, resp) => {
   // console.log(req)
   let data = qs.parse(req.body);
-  // console.log(data);
   let code = data.code;
   let code2Session;
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
@@ -57,7 +56,6 @@ var login = (req, resp) => {
     var sessionKey = code2Session.session_key;
     var encryptedData = decodeURIComponent(data.encryptedData);
     var iv = decodeURIComponent(data.iv);
-    console.log(encryptedData);
     var pc = new WXBizDataCrypt(appId, sessionKey);
 
     var codes = pc.decryptData(encryptedData , iv);
@@ -74,7 +72,9 @@ var login = (req, resp) => {
       "insert into user (unionid,openId) values (?,?)",
       mysqlOpt.formatParams(unionid, code2Session.openid),
       () => {
-        resp.json(msgResult.msg(unionid));
+        resp.json(msgResult.msg({
+          unionid
+        }));
       },
       e => {
         console.log(msgResult.error(e.message));
@@ -87,23 +87,68 @@ var login = (req, resp) => {
 
 var saveJobSeeker = (req, resp) => {
   let query = qs.parse(req.body);
-  let {name, birthday, sex, email, city, identity, school, major, education, time_enrollment, time_graduation, advantage} = query;
+  let {name, birthday, sex, email, city, identity, school, major, education, time_enrollment, time_graduation, advantage, rule} = query;
   let unionid = req.query.unionid;
+  rule = parseInt(rule);
+  saveBasic();
+  function saveBasic () {
+    mysqlOpt.exec(
+      `update user
+       set nickname = ?,birthday = ?,sex = ?,email = ?,city = ?,identity = ?,advantage = ?,rule = ?
+       where unionid = ?`,
+      mysqlOpt.formatParams(name, birthday, sex, email, city, identity, advantage, rule, unionid),
+      (res) => {
+        saveEducation();
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("用户数据保存错误"));
+      }
+    );
+  }
 
+  function saveEducation () {
+    mysqlOpt.exec(
+      `insert into user_education
+       (unionid,school,major,education,time_enrollment,time_graduation)
+       values (?,?,?,?,?,?)
+      `,
+      mysqlOpt.formatParams(unionid, school, major, education, time_enrollment, time_graduation),
+      (res) => {
+        resp.json(msgResult.msg({
+          name, birthday, sex, email, city, identity, advantage, rule
+        }));
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("用户数据保存错误"));
+      }
+    );
+  }
+
+}
+
+var saveRecruiter = (req, resp) => {
+  let query = qs.parse(req.body);
+  let {name, email, position, company, industry, scale, progress, rule} = query;
+  let unionid = req.query.unionid;
+  rule = parseInt(rule);
+  
   mysqlOpt.exec(
     `update user
-     set nickname = ?,birthday = ?,sex = ?,email = ?,city = ?,identity = ?,advantage = ?
+     set nickname = ?,email = ?,position = ?,company = ?,industry = ?,companyScale = ?,progress = ?,rule = ?
      where unionid = ?`,
-    mysqlOpt.formatParams(name, birthday, sex, email, city, identity, advantage, unionid),
+    mysqlOpt.formatParams(name, email, position, company, industry, scale, progress, rule, unionid),
     (res) => {
-      resp.json(msgResult.msg('ok'));
+      resp.json(msgResult.msg({
+        name, email, position, company, industry, scale, progress, rule
+      }));
     },
     e => {
       console.log(msgResult.error(e.message));
       resp.json(msgResult.error("用户数据保存错误"));
     }
   );
-
 
 }
 
@@ -180,6 +225,7 @@ var userAvatar = (req, resp) => {
 module.exports = {
   login,
   saveJobSeeker,
+  saveRecruiter,
   userAvatarUrl,
   userAvatar
 };
