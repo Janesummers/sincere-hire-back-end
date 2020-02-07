@@ -87,16 +87,16 @@ var login = (req, resp) => {
 
 var saveJobSeeker = (req, resp) => {
   let query = qs.parse(req.body);
-  let {name, birthday, sex, email, city, identity, school, major, education, time_enrollment, time_graduation, advantage, rule} = query;
+  let {name, birthday, sex, email, city, identity, school, major, education, time_enrollment, time_graduation, advantage, jobTime, rule} = query;
   let unionid = req.query.unionid;
   rule = parseInt(rule);
   saveBasic();
   function saveBasic () {
     mysqlOpt.exec(
       `update user
-       set nickname = ?,birthday = ?,sex = ?,email = ?,city = ?,identity = ?,advantage = ?,rule = ?
+       set nickname = ?,birthday = ?,sex = ?,email = ?,city = ?,identity = ?,advantage = ?,jobTime = ?,rule = ?
        where unionid = ?`,
-      mysqlOpt.formatParams(name, birthday, sex, email, city, identity, advantage, rule, unionid),
+      mysqlOpt.formatParams(name, birthday, sex, email, city, identity, advantage, jobTime,rule, unionid),
       (res) => {
         saveEducation();
       },
@@ -116,7 +116,7 @@ var saveJobSeeker = (req, resp) => {
       mysqlOpt.formatParams(unionid, school, major, education, time_enrollment, time_graduation),
       (res) => {
         resp.json(msgResult.msg({
-          name, birthday, sex, email, city, identity, advantage, rule
+          name, birthday, sex, email, city, identity, advantage, school, major, jobTime, rule
         }));
       },
       e => {
@@ -216,6 +216,35 @@ var userAvatar = (req, resp) => {
   });
 }
 
+var saveUserInfo = (req, resp) => {
+  let unionid = req.query.unionid;
+  let query = qs.parse(req.body);
+  let {name, sex, birthday, jobTime, city, email} = query;
+  if (!unionid || unionid.length != 28 || !name || !sex || !birthday || !jobTime || !city || !email) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  mysqlOpt.exec(
+    `update user
+     set nickname = ?,birthday = ?,sex = ?,email = ?,city = ?,jobTime = ?
+     where unionid = ?`,
+    mysqlOpt.formatParams(name, birthday, sex, email, city, jobTime, unionid),
+    (res) => {
+      let changeRows = JSON.parse(JSON.stringify(res)).changedRows;
+      if (changeRows > 0) {
+        resp.json(msgResult.msg('更新成功'));
+      } else {
+        resp.json(msgResult.error('更新失败'));
+      }
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("用户数据保存错误"));
+    }
+  );
+}
+
 
 
 
@@ -227,5 +256,6 @@ module.exports = {
   saveJobSeeker,
   saveRecruiter,
   userAvatarUrl,
-  userAvatar
+  userAvatar,
+  saveUserInfo
 };

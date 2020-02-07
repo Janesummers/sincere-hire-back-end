@@ -56,6 +56,10 @@ app.get("/userAvatar/:name", (req, resp) => {
   user.userAvatar(req, resp);
 });
 
+app.post("/saveUserInfo", (req, resp) => {
+  user.saveUserInfo(req, resp);
+})
+
 const openData = require('./openData');
 
 app.get("/getCity", (req, resp) => {
