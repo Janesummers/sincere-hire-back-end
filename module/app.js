@@ -60,6 +60,14 @@ app.post("/saveUserInfo", (req, resp) => {
   user.saveUserInfo(req, resp);
 })
 
+app.post('/getUserEducation', (req, resp) => {
+  user.getUserEducation(req, resp);
+})
+
+app.post('/addEducation', (req, resp) => {
+  user.addEducation(req, resp);
+})
+
 const openData = require('./openData');
 
 app.get("/getCity", (req, resp) => {
