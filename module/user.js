@@ -245,6 +245,52 @@ var saveUserInfo = (req, resp) => {
   );
 }
 
+var getUserEducation = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  mysqlOpt.exec(
+    `select * from user_education
+     where unionid = ?`,
+    mysqlOpt.formatParams(unionid),
+    (res) => {
+      resp.json(msgResult.msg(res));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("用户数据保存错误"));
+    }
+  );
+
+}
+
+var addEducation = (req, resp) => {
+  let unionid = req.query.unionid;
+  let query = qs.parse(req.body);
+  let {school, edu, major, time_enrollment, time_graduation} = query;
+  if (!unionid || unionid.length != 28 || !school || !edu || !major || !time_enrollment || !time_graduation) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  mysqlOpt.exec(
+    `insert into 
+    user_education(unionid,school,major,education,time_enrollment,time_graduation)
+    values(?,?,?,?,?,?)`,
+    mysqlOpt.formatParams(unionid, school, major, edu, time_enrollment, time_graduation),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("教育信息保存错误"));
+    }
+  );
+}
+
 
 
 
@@ -257,5 +303,7 @@ module.exports = {
   saveRecruiter,
   userAvatarUrl,
   userAvatar,
-  saveUserInfo
+  saveUserInfo,
+  getUserEducation,
+  addEducation
 };
