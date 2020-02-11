@@ -60,12 +60,24 @@ app.post("/saveUserInfo", (req, resp) => {
   user.saveUserInfo(req, resp);
 })
 
-app.post('/getUserEducation', (req, resp) => {
+app.get('/getUserEducation', (req, resp) => {
   user.getUserEducation(req, resp);
 })
 
 app.post('/addEducation', (req, resp) => {
   user.addEducation(req, resp);
+})
+
+app.get('/getUserInfo', (req, resp) => {
+  user.getUserInfo(req, resp);
+})
+
+app.post('/addWorkExperience', (req, resp) => {
+  user.addWorkExperience(req, resp);
+})
+
+app.get('/getUserWork', (req, resp) => {
+  user.getUserWork(req, resp);
 })
 
 const openData = require('./openData');
@@ -86,6 +98,11 @@ const msg = require('./msg');
 app.post("/getMessageList", (req, resp) => {
   msg.getMessageList(req, resp);
 });
+
+const reptile = require('../module/reptile');
+app.get('/getPracticeData', (req, resp) => {
+  reptile.getPracticeData(req, resp);
+})
 
 
 

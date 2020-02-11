@@ -252,6 +252,8 @@ var getUserEducation = (req, resp) => {
     return;
   }
 
+  console.log('用户请求：getUserEducation')
+
   mysqlOpt.exec(
     `select * from user_education
      where unionid = ?`,
@@ -291,6 +293,127 @@ var addEducation = (req, resp) => {
   );
 }
 
+var getUserInfo = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getUserInfo')
+
+  getInfo();
+
+  function getInfo () {
+    mysqlOpt.exec(
+      `select nickname as name,avatarUrl,birthday,sex,email,city,identity,advantage,jobTime,rule
+       from user
+       where unionid = ?`,
+      mysqlOpt.formatParams(unionid),
+      (res) => {
+        let info = JSON.parse(JSON.stringify(res));
+        getOnceEducation(info[0]);
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("信息获取错误"));
+      }
+    );
+  }
+
+  function getOnceEducation (info) {
+    mysqlOpt.exec(
+      `select school,major
+       from user_education
+       where unionid = ?`,
+      mysqlOpt.formatParams(unionid),
+      (res) => {
+        let data = JSON.parse(JSON.stringify(res))[0];
+        info.school = data.school;
+        info.major = data.major;
+        if (info.rule == 0) {
+          info.rule = 'job_seeker'
+        } else {
+          info.rule = 'recruiter'
+        }
+        let age = 0;
+        let birthday = info.birthday.match(/[^\.]+/g);
+        var year = parseInt(birthday[0]);
+        var month = parseInt(birthday[1]);
+        let date = new Date();
+        if (month < date.getMonth() + 1) {
+          age = new Date().getFullYear() - year;
+        } else {
+          age = new Date().getFullYear() - year - 1;
+        }
+        info.age = age;
+        resp.json(msgResult.msg(info));
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("信息获取错误"));
+      }
+    );
+  }
+}
+
+var addWorkExperience = (req, resp) => {
+  let unionid = req.query.unionid;
+  let query = qs.parse(req.body);
+  let {
+    name,
+    position,
+    hiredate,
+    leavedate,
+    industry,
+    monthly_salary,
+    job_description
+  } = query;
+  if (!unionid || unionid.length != 28 || !name || !position || !hiredate || !leavedate || !industry || !monthly_salary || !job_description) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  monthly_salary = parseInt(monthly_salary)
+
+  mysqlOpt.exec(
+    `insert into 
+    work_experience(unionid,company_name,position,hiredate,leavedate,industry,salary,job_description)
+    values(?,?,?,?,?,?,?,?)`,
+    mysqlOpt.formatParams(unionid, name, position, hiredate, leavedate, industry, monthly_salary, job_description),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("教育信息保存错误"));
+    }
+  );
+}
+
+var getUserWork = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getUserWork')
+
+  mysqlOpt.exec(
+    `select * from work_experience
+     where unionid = ?`,
+    mysqlOpt.formatParams(unionid),
+    (res) => {
+      resp.json(msgResult.msg(res));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("用户数据保存错误"));
+    }
+  );
+}
+
 
 
 
@@ -305,5 +428,8 @@ module.exports = {
   userAvatar,
   saveUserInfo,
   getUserEducation,
-  addEducation
+  getUserInfo,
+  addEducation,
+  addWorkExperience,
+  getUserWork
 };
