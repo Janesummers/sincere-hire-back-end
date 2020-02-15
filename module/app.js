@@ -78,7 +78,11 @@ app.post('/addWorkExperience', (req, resp) => {
 
 app.get('/getUserWork', (req, resp) => {
   user.getUserWork(req, resp);
-})
+});
+
+app.post('/saveEvaluate', (req, resp) => {
+  user.saveEvaluate(req, resp);
+});
 
 const openData = require('./openData');
 

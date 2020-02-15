@@ -415,6 +415,29 @@ var getUserWork = (req, resp) => {
 }
 
 
+var saveEvaluate = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+  let query = qs.parse(req.body);
+  console.log('用户请求：saveEvaluate');
+
+  mysqlOpt.exec(
+    `update user set advantage = ?
+     where unionid = ?`,
+    mysqlOpt.formatParams(query.text, unionid),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("用户数据保存错误"));
+    }
+  );
+}
+
 
 
 
@@ -431,5 +454,6 @@ module.exports = {
   getUserInfo,
   addEducation,
   addWorkExperience,
-  getUserWork
+  getUserWork,
+  saveEvaluate
 };
