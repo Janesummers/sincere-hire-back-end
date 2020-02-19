@@ -103,13 +103,35 @@ app.post("/getMessageList", (req, resp) => {
   msg.getMessageList(req, resp);
 });
 
-const reptile = require('../module/reptile');
-app.get('/getPracticeData', (req, resp) => {
-  reptile.getPracticeData(req, resp);
+const reptile = require('./reptile');
+app.post('/saveJobInfo', (req, resp) => {
+  reptile.saveJobInfo(req, resp);
+})
+
+const jobs = require('./jobs');
+app.post('/getPracticeJobs', (req, resp) => {
+  jobs.getPracticeJobs(req, resp);
+})
+
+app.post('/searchJob', (req, resp) => {
+  jobs.searchJob(req, resp);
+})
+
+app.get('/getCollect', (req, resp) => {
+  jobs.getCollect(req, resp);
+})
+
+app.get('/setCollect', (req, resp) => {
+  jobs.setCollect(req, resp);
+})
+
+app.get('/getUserCollect', (req, resp) => {
+  jobs.getUserCollect(req, resp);
 })
 
 
 
 app.listen(8888, () => {
   console.log("开启成功：http://localhost:8888");
+  // reptile.saveJobs();
 });
