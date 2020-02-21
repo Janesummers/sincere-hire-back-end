@@ -129,15 +129,15 @@ var saveJobSeeker = (req, resp) => {
 
 var saveRecruiter = (req, resp) => {
   let query = qs.parse(req.body);
-  let {name, email, position, company, type, scale, rule} = query;
+  let {name, sex, email, position, company, type, scale, rule} = query;
   let unionid = req.query.unionid;
   rule = parseInt(rule);
   let company_id = "QZ" + parseInt(new Date().getTime() / 10000);
   mysqlOpt.exec(
     `update user
-     set nickname = ?,email = ?,position = ?,company_id = ?,rule = ?
+     set nickname = ?,sex = ?,email = ?,position = ?,company_id = ?,rule = ?
      where unionid = ?`,
-    mysqlOpt.formatParams(name, email, position, company_id, rule, unionid),
+    mysqlOpt.formatParams(name, sex, email, position, company_id, rule, unionid),
     (res) => {
       insertCompany();
     },
