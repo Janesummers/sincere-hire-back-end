@@ -131,6 +131,9 @@ var saveJobs = () => {
       edu_level,
       update_date
     } = job[n];
+    if (welfare == '') {
+      welfare = null;
+    }
     let saveJob = new Promise ((resolve, reject) => {
       mysqlOpt.exec(
         `insert into jobs 

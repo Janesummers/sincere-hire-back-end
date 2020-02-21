@@ -1,6 +1,7 @@
 const qs = require('qs');
 const msgResult = require('./msgResult');
 const mysqlOpt = require('../util/mysqlOpt');
+const util = require('../util/util');
 
 var getPracticeJobs = (req, resp) => {
   let unionid = req.query.unionid;
@@ -176,10 +177,107 @@ let setCollect = (req, resp) => {
   
 }
 
+let saveJob = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  let data = qs.parse(req.body);
+
+  console.log('用户请求：saveJob');
+
+  let t = util.getTime();
+  let d = new Date(t);
+  let job_id = `CC${d.getTime()}${t.match(/[^\s]+/)[0].replace(/-/g, '')}`;
+  let update_date = t;
+  let {
+    company_id,
+    job_name,
+    job_type,
+    empl_type,
+    working_exp,
+    welfare,
+    city,
+    display,
+    skill,
+    other_require,
+    salary,
+    edu_level,
+    job_address,
+    recruit
+  } = data;
+
+  if (welfare == 'null') {
+    welfare = null;
+  }
+  if (skill == 'null') {
+    skill = null;
+  }
+
+  mysqlOpt.exec(
+    `insert into jobs 
+     values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)`,
+    mysqlOpt.formatParams(
+      job_id,
+      company_id,
+      job_name,
+      job_type,
+      empl_type,
+      working_exp,
+      welfare,
+      welfare,
+      city,
+      display,
+      salary,
+      skill,
+      other_require,
+      job_address,
+      recruit,
+      unionid,
+      edu_level,
+      update_date),
+    (res) => {
+      resp.json(msgResult.msg('ok'))
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error(e.message))
+    }
+  );
+}
+
+let getMyRelease = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getMyRelease');
+
+  mysqlOpt.exec(
+    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
+    from jobs as job, company as comp
+     where publisher_id = ? and job.company_id = comp.company_id and job.company_id = ?`,
+    mysqlOpt.formatParams(unionid, req.query.company_id),
+    (res) => {
+      resp.json(msgResult.msg(res))
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error(e.message))
+    }
+  );
+}
+
 module.exports = {
   getPracticeJobs,
   searchJob,
   getCollect,
   setCollect,
-  getUserCollect
+  getUserCollect,
+  saveJob,
+  getMyRelease
 }

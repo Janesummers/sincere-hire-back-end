@@ -32,7 +32,6 @@ var login = (req, resp) => {
             "select * from user where openId = ?",
             mysqlOpt.formatParams(code2Session.openid),
             (res) => {
-              console.log(res)
               if (res.length > 0) {
                 resp.json(msgResult.msg(res));
               } else {
@@ -130,25 +129,40 @@ var saveJobSeeker = (req, resp) => {
 
 var saveRecruiter = (req, resp) => {
   let query = qs.parse(req.body);
-  let {name, email, position, company, industry, scale, progress, rule} = query;
+  let {name, email, position, company, type, scale, rule} = query;
   let unionid = req.query.unionid;
   rule = parseInt(rule);
-  
+  let company_id = "QZ" + parseInt(new Date().getTime() / 10000);
   mysqlOpt.exec(
     `update user
-     set nickname = ?,email = ?,position = ?,company = ?,industry = ?,companyScale = ?,progress = ?,rule = ?
+     set nickname = ?,email = ?,position = ?,company_id = ?,rule = ?
      where unionid = ?`,
-    mysqlOpt.formatParams(name, email, position, company, industry, scale, progress, rule, unionid),
+    mysqlOpt.formatParams(name, email, position, company_id, rule, unionid),
     (res) => {
-      resp.json(msgResult.msg({
-        name, email, position, company, industry, scale, progress, rule
-      }));
+      insertCompany();
     },
     e => {
       console.log(msgResult.error(e.message));
       resp.json(msgResult.error("用户数据保存错误"));
     }
   );
+
+  function insertCompany () {
+    mysqlOpt.exec(
+      `insert into company
+       values (?,?,?,?)`,
+      mysqlOpt.formatParams(company_id, company, scale, type),
+      (res) => {
+        resp.json(msgResult.msg({
+          name, email, position, company_id, scale, rule
+        }));
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        resp.json(msgResult.error("用户数据保存错误"));
+      }
+    );
+  }
 
 }
 
@@ -306,12 +320,13 @@ var getUserInfo = (req, resp) => {
 
   function getInfo () {
     mysqlOpt.exec(
-      `select nickname as name,avatarUrl,birthday,sex,email,city,identity,advantage,jobTime,rule
+      `select nickname as name,avatarUrl,birthday,sex,email,city,identity,advantage,jobTime,company_id,rule
        from user
        where unionid = ?`,
       mysqlOpt.formatParams(unionid),
       (res) => {
         let info = JSON.parse(JSON.stringify(res));
+        console.log(info[0])
         getOnceEducation(info[0]);
       },
       e => {
@@ -329,24 +344,27 @@ var getUserInfo = (req, resp) => {
       mysqlOpt.formatParams(unionid),
       (res) => {
         let data = JSON.parse(JSON.stringify(res))[0];
-        info.school = data.school;
-        info.major = data.major;
-        if (info.rule == 0) {
-          info.rule = 'job_seeker'
-        } else {
-          info.rule = 'recruiter'
+        if (data) {
+          info.school = data.school;
+          info.major = data.major;
+          if (info.rule == 0) {
+            info.rule = 'job_seeker'
+          } else {
+            info.rule = 'recruiter'
+          }
+          let age = 0;
+          let birthday = info.birthday.match(/[^\.]+/g);
+          var year = parseInt(birthday[0]);
+          var month = parseInt(birthday[1]);
+          let date = new Date();
+          if (month < date.getMonth() + 1) {
+            age = new Date().getFullYear() - year;
+          } else {
+            age = new Date().getFullYear() - year - 1;
+          }
+          info.age = age;
         }
-        let age = 0;
-        let birthday = info.birthday.match(/[^\.]+/g);
-        var year = parseInt(birthday[0]);
-        var month = parseInt(birthday[1]);
-        let date = new Date();
-        if (month < date.getMonth() + 1) {
-          age = new Date().getFullYear() - year;
-        } else {
-          age = new Date().getFullYear() - year - 1;
-        }
-        info.age = age;
+        
         resp.json(msgResult.msg(info));
       },
       e => {

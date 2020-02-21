@@ -129,6 +129,14 @@ app.get('/getUserCollect', (req, resp) => {
   jobs.getUserCollect(req, resp);
 })
 
+app.post('/saveJob', (req, resp) => {
+  jobs.saveJob(req, resp);
+})
+
+app.get('/getMyRelease', (req, resp) => {
+  jobs.getMyRelease(req, resp);
+})
+
 
 
 app.listen(8888, () => {
