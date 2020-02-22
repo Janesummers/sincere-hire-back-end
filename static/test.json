@@ -1,0 +1,107 @@
+{
+    "code": 200,
+    "data": {
+        "chatTotal": 0,
+        "chatWindowState": 0,
+        "count": 27,
+        "isEndPage": 0,
+        "isVerification": 0,
+        "method": "score_anon",
+        "methodGroup": "",
+        "nullException": "",
+        "typeSearch": 0,
+        "results": [
+            {
+                "number": "CC540854830J00375126304",
+                "jobName": "留学咨询顾问（日本）",
+                "company": {
+                    "name": "厦门市儒晟教育服务有限公司",
+                    "number": "CZ540854830",
+                    "type": {
+                        "name": "民营"
+                    },
+                    "size": {
+                        "name": "100-499人"
+                    },
+                    "url": "https://company.zhaopin.com/CZ540854830.htm"
+                },
+                "city": {
+                    "items": [
+                        {
+                            "name": "厦门",
+                            "code": "682"
+                        }
+                    ],
+                    "display": "厦门"
+                },
+                "updateDate": "2020-02-18 21:15:47",
+                "salary": "6K-12K",
+                "distance": 0,
+                "eduLevel": {
+                    "name": "本科"
+                },
+                "jobType": {
+                    "items": [
+                        {
+                            "name": "咨询/顾问/调研/数据分析"
+                        }
+                    ]
+                },
+                "feedbackRation": 0,
+                "workingExp": {
+                    "name": "1-3年"
+                },
+                "industry": "201100",
+                "emplType": "全职",
+                "applyType": "1",
+                "saleType": false,
+                "positionURL": "https://jobs.zhaopin.com/CC540854830J00375126304.htm",
+                "companyLogo": "https://zhaopin-rd5-pub.oss-cn-beijing.aliyuncs.com/imgs/company/399d29ad6d5771d1e47002e6fa0c8ed8.png",
+                "tags": [],
+                "expandCount": 0,
+                "score": "180",
+                "vipLevel": 0,
+                "positionLabel": "{\"chatWindow\":null,\"refreshLevel\":0,\"skillLabel\":[{\"state\":0,\"value\":\"日本留学咨询顾问\"},{\"state\":0,\"value\":\"高端销售\"},{\"state\":0,\"value\":\"留学咨询顾问\"},{\"state\":0,\"value\":\"市场营销\"}]}",
+                "bestEmployerLabel": [],
+                "welfare": [
+                    "五险一金",
+                    "年底双薪",
+                    "全勤奖",
+                    "定期体检",
+                    "节日福利"
+                ],
+                "businessArea": "后溪",
+                "futureJob": false,
+                "futureJobUrl": "",
+                "tagIntHighend": 0,
+                "rootOrgId": 54085483,
+                "staffId": 1025082345,
+                "isChatWindow": 1,
+                "staff": {
+                    "avatar": "https://storage-public.zhaopin.cn/wechat/avatar/1576037209111670407/132",
+                    "department": "",
+                    "hrJob": "人事经理",
+                    "hrOnlineIocState": 0,
+                    "hrOnlineState": "昨日活跃",
+                    "hrResumeOperationState": "",
+                    "id": 1025082345,
+                    "nickName": "",
+                    "passportName": "***",
+                    "staffName": "HR",
+                    "state": 0
+                },
+                "batchDeliveryType": 1,
+                "index": 0,
+                "selected": false,
+                "applied": false,
+                "collected": false,
+                "isShow": false,
+                "timeState": "最新",
+                "rate": ""
+            }
+        ],
+        "taskId": "496f6a67c31c408babfc5880e6cb96a3",
+        "numFound": 999999,
+        "numTotal": 27
+    }
+}

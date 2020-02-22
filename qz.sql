@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 21/02/2020 21:43:20
+ Date: 22/02/2020 23:18:22
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `collect` (
   `unionid` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `job_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of collect
@@ -38,6 +38,8 @@ INSERT INTO `collect` VALUES (8, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC701516780J00
 INSERT INTO `collect` VALUES (9, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC485028532J00323563906');
 INSERT INTO `collect` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC120019970J00082678411');
 INSERT INTO `collect` VALUES (11, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC000405335J00357872406');
+INSERT INTO `collect` VALUES (12, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229223900020200221');
+INSERT INTO `collect` VALUES (13, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229198600020200221');
 COMMIT;
 
 -- ----------------------------
@@ -167,8 +169,10 @@ CREATE TABLE `user` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `user` VALUES ('onmaV01V1-d0ffgOXDsxLPYrIC1g', 'o3yoo4zuVdcYRWwO-3qRjFkmKHrU', '小杜', NULL, '1996.12', '女', '709528701@qq.com', '南平市', '学生', '', '无工作经验', NULL, NULL, 0);
+INSERT INTO `user` VALUES ('onmaV05nWr8oOiGG9dlVN0zcLmMc', 'o3yoo4wnz7oNxJyse9xJzhuBATac', '陈仁忠', 'b25tYVYwNW5XcjhvT2lHRzlkbFZOMHpjTG1NYw==1582300219634.png', '1996.08', '男', '171138739@qq.com', '莆田市', '学生', '很帅', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1582209276697.png', NULL, NULL, '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158220939', 1);
 INSERT INTO `user` VALUES ('onmaV09z1tYeenqhrhxU7ydeDC1A', 'o3yoo42saxOs9w6wMClhJQFpRzfE', '蓝雪芳', NULL, '1996.07', '女', '1901650964@qq.com', '福州市', '职场人士', '', '无工作经验', NULL, NULL, 0);
+INSERT INTO `user` VALUES ('onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'o3yoo4_NU-2AR3gjxUaHIkMB_azo', '测试号', NULL, '2004.01', '男', '1752321720@qq.com', '北京市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1582114496211.png', '1996.12', '女', '2287944282@qq.com', '漳州市', '学生', '善于沟通', '2018.03', NULL, NULL, 0);
 COMMIT;
 
@@ -185,7 +189,7 @@ CREATE TABLE `user_education` (
   `time_enrollment` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `time_graduation` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user_education
@@ -194,6 +198,8 @@ BEGIN;
 INSERT INTO `user_education` VALUES (8, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '闽江学院', '软件工程', '本科', '2018.09', '2020.07');
 INSERT INTO `user_education` VALUES (9, 'onmaV09z1tYeenqhrhxU7ydeDC1A', '福建师范大学协和学院', '金融学', '本科', '2015.09', '2019.06');
 INSERT INTO `user_education` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '闽江学院', '软件工程', '本科', '2018.09', '2020.06');
+INSERT INTO `user_education` VALUES (11, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '闽江学院', '软件工程', '本科', '2018.09', '2020.06');
+INSERT INTO `user_education` VALUES (12, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '闽江学院', '软件工程', '本科', '2020.01', '2021.01');
 COMMIT;
 
 -- ----------------------------

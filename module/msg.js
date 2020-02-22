@@ -10,8 +10,23 @@ var getMessageList = (req, resp) => {
     return;
   }
   let unionid = Base64.decode(params.id);
+
+  let sql = '';
+
+  if (params.rule != 'job_seeker') {
+    sql = `select u.*, comp.company_name  
+    from user as u, company as comp
+    where (u.company_id = comp.company_id) and u.unionid <> ?`
+  } else {
+    sql = `select *
+    from user
+    where unionid <> ?`
+  }
+
   mysqlOpt.exec(
-    'select * from user where unionid <> ?',
+    `select *
+    from user
+    where unionid <> ?`,
     mysqlOpt.formatParams(unionid),
     res => {
       resp.json(msgResult.msg(res));
