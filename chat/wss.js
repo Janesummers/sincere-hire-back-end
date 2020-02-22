@@ -21,6 +21,9 @@ function runServer () {
     unionid = Base64.decode(unionid)
     ws.unionid = unionid;
     console.log('连接成功', `数量：${Array.from(wss.clients).length}`);
+    wss.clients.forEach((client) => {
+      console.log(client.unionid)
+    });
     //客户端发送消息时会触发这个
     ws.on('message', function incoming(data) {
       let {msg, client, to, time} = JSON.parse(data);
