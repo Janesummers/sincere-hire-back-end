@@ -66,9 +66,9 @@ let searchJob = (req, resp) => {
   
   // resp.json(msgResult.msg([]))
   mysqlOpt.exec(
-    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
-     from jobs as job, company as comp 
-     where job.job_name like ? and job.company_id = comp.company_id limit ?, ?`,
+    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
+     from jobs as job, company as comp, user as u
+     where job.job_name like ? and job.company_id = comp.company_id and job.publisher_id = u.unionid limit ?, ?`,
     mysqlOpt.formatParams(keyWord, (page - 1) * num, num),
     (res) => {
       console.log(res)
@@ -115,9 +115,9 @@ let getUserCollect = (req, resp) => {
   console.log('用户请求：getUserCollect');
 
   mysqlOpt.exec(
-    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
-     from jobs as job, company as comp, collect as col 
-     where job.job_id = col.job_id and job.company_id = comp.company_id and col.unionid = ?`,
+    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
+     from jobs as job, company as comp, collect as col, user as u
+     where job.job_id = col.job_id and job.company_id = comp.company_id and col.unionid and job.publisher_id = u.unionid = ?`,
     mysqlOpt.formatParams(unionid),
     (res) => {
       resp.json(msgResult.msg(res));
