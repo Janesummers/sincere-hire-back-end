@@ -21,14 +21,14 @@ var getPracticeJobs = (req, resp) => {
   let sql = '';
   let data;
   if (emplType) {
-    sql = `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
-    from jobs as job, company as comp 
-    where job.empl_type = ? and job.company_id = comp.company_id limit ?, ?`;
+    sql = `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
+    from jobs as job, company as comp, user as u
+    where job.empl_type = ? and job.company_id = comp.company_id and job.publisher_id = u.unionid limit ?, ?`;
     data = mysqlOpt.formatParams(emplType, (page - 1) * num, num);
   } else {
-    sql = `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
-    from jobs as job, company as comp 
-    where job.company_id = comp.company_id limit ?, ?`;
+    sql = `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
+    from jobs as job, company as comp, user as u
+    where job.company_id = comp.company_id and job.publisher_id = u.unionid limit ?, ?`;
     data = mysqlOpt.formatParams((page - 1) * num, num);
   }
   

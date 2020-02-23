@@ -103,6 +103,14 @@ app.post("/getMessageList", (req, resp) => {
   msg.getMessageList(req, resp);
 });
 
+app.post("/getMessage", (req, resp) => {
+  msg.getMessage(req, resp);
+})
+
+app.post("/saveMessageList", (req, resp) => {
+  msg.saveMessageList(req, resp);
+})
+
 const reptile = require('./reptile');
 app.post('/saveJobInfo', (req, resp) => {
   reptile.saveJobInfo(req, resp);
