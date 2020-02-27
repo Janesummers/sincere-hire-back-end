@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : clq
+ Source Server         : cms
  Source Server Type    : MySQL
  Source Server Version : 50728
- Source Host           : localhost:3306
+ Source Host           : 134.175.68.141:3306
  Source Schema         : qz
 
  Target Server Type    : MySQL
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 23/02/2020 21:06:45
+ Date: 27/02/2020 23:14:07
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `collect` (
   `unionid` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `job_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of collect
@@ -40,6 +40,8 @@ INSERT INTO `collect` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC120019970J0
 INSERT INTO `collect` VALUES (11, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC000405335J00357872406');
 INSERT INTO `collect` VALUES (12, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229223900020200221');
 INSERT INTO `collect` VALUES (13, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229198600020200221');
+INSERT INTO `collect` VALUES (16, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC120019970J00082678411');
+INSERT INTO `collect` VALUES (17, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158246566700020200223');
 COMMIT;
 
 -- ----------------------------
@@ -77,6 +79,7 @@ INSERT INTO `company` VALUES ('CZ701516780', '掌门1对1教学部（中国）',
 INSERT INTO `company` VALUES ('CZ815413650', '厦门贝壳闹海房地产经纪有限公司', '10000人以上', '民营');
 INSERT INTO `company` VALUES ('CZ824417960', '君泉资产管理有限公司', '20人以下', '民营');
 INSERT INTO `company` VALUES ('QZ158220939', '福建探极贸易有限公司', '50-150人', '民营');
+INSERT INTO `company` VALUES ('QZ158281115', '福建探极贸易有限公司', '15-50人', '民营');
 COMMIT;
 
 -- ----------------------------
@@ -112,8 +115,8 @@ BEGIN;
 INSERT INTO `jobs` VALUES ('CC000405335J00357872406', 'CZ000405330', '前端开发工程师（应届或优秀实习生）(1名）', '软件/互联网开发/系统集成', '全职', '不限', '五险一金|定期体检|高温补贴|带薪年假|节日福利', '五险一金|定期体检|高温补贴|带薪年假|节日福利', '厦门', '厦门-湖里区', '4K-6K', 'Css|Javascript|html|C语言开发|VUE', '岗位名称 前端开发工程师（应届或优秀实习生）(1名）|岗位职责|1. 负责web 页面开发，小程序开发，公众号开发|岗位要求|1. 熟悉html/css/javascript，c语言开发|2. 计算机相关专业毕业|3. 英语四级以上|4. 掌握数据结构，操作系统，数据库等基础知识|5. 对web开发有浓厚兴趣，了解vue框架', '五缘湾恒安国际中心', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2019-11-13 11:24:25');
 INSERT INTO `jobs` VALUES ('CC120019970J00082678411', 'QZ158220939', 'RPO招聘顾问实习生', '实习生/培训生/储备干部', '实习', '无经验', '弹性工作|节日福利|周末双休', '弹性工作|节日福利|周末双休', '厦门', '厦门', '2K-2.5K', NULL, '工作内容： |1、分析招聘需求、搜寻简历、筛选简历、电话沟通、面试跟进与反馈，协助谈薪，跟进入职 |2、总结招聘过程中的数据，分析改进执行技巧。 |任职要求：|1、2020年应届生，统招本科，人力资源相关专业或具备电销经验优先； |2、暑假全职实习并且大四每周能至少保证3天；', '思明区七星西路178号起兴大厦901室', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-07 10:46:02');
 INSERT INTO `jobs` VALUES ('CC120019970J90289423000', 'CZ120019970', '运营实习生', '实习生/培训生/储备干部', '实习', '无经验', '节日福利', '节日福利', '厦门', '厦门', '2K-4K', '数据分析|办公表格', '岗位职责：|1、负责业务数据（产品销售数据、销售KPI数据）的收集、整理及分析工作定期输出数据分析报表；|2、运用数据分析手段，为产品运营、人员绩效的优化提供数据支持；|3、优化数据统计指标体系，运营系统流程梳理、数据规范。|任职要求：|1、本科及以上学历，数学、数据统计专业优先；|2、沟通及学习适应能力强，责任心强，能承受一定的工作压力；|3、熟练使用Excel，熟悉数据库应用，熟练编写运营数据分析报告；|4、2020届应届生。|工作时间：|周一至周五朝9晚6，周末双休', '七星西路178号七星大厦901室', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-10 17:20:00');
-INSERT INTO `jobs` VALUES ('CC158229198600020200221', 'QZ158220939', '收到地级市', '软件/互联网开发/系统集成', '全职', '不限', '五险一金|定期体检|高温补贴|节日福利|弹性工作', '五险一金|定期体检|高温补贴|节日福利|弹性工作', '厦门', '厦门-思明区', '3k-5k', 'Css|Javascript|html|VUE|MySQL', '【工作职责】:|实打实大吉大|大萨达所大|大萨达撒', '厦门', '3', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-21 21:33:06');
-INSERT INTO `jobs` VALUES ('CC158229223900020200221', 'QZ158220939', '前端工程师', '软件/互联网开发/系统集成', '全职', '1-3年', '定期体检|弹性工作|高温补贴', '定期体检|弹性工作|高温补贴', '厦门', '厦门-思明区', '4k-8k', 'VUE|Css|Javascript|html|MySQL', '【岗位职责】|代课教师肯定是|大萨达所大|大萨达撒|大萨达', '厦门', '3', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-21 21:37:19');
+INSERT INTO `jobs` VALUES ('CC158229223900020200221', 'QZ158281115', '前端工程师', '软件/互联网开发/系统集成', '全职', '1-3年', '定期体检|弹性工作|高温补贴', '定期体检|弹性工作|高温补贴', '厦门', '厦门-思明区', '4k-8k', 'VUE|Css|Javascript|html|MySQL', '【岗位职责】|代课教师肯定是|大萨达所大|大萨达撒|大萨达', '厦门', '3', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-21 21:37:19');
+INSERT INTO `jobs` VALUES ('CC158246566700020200223', 'QZ158220939', 'Nodejs', '互联网开发', '全职', '无经验', '五险一金|高温补贴', '五险一金|高温补贴', '漳州', '漳州-芗城区', '1.5k-3k', 'Css|Javascript|html', '需要懂一点东西', '澎湖湾', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-23 21:47:47');
 INSERT INTO `jobs` VALUES ('CC301785724J00434168705', 'CZ301785720', 'C#/.Net开发实习生', '软件/互联网开发/系统集成', '实习', '无经验', '五险一金|年底双薪|加班补助|带薪年假|补充医疗保险', '五险一金|年底双薪|加班补助|带薪年假|补充医疗保险|定期体检|节日福利|弹性工作', '厦门', '厦门', '3K-6K', '数据库|MySQL|WINFORM|ASP|C#/.NET', '岗位职责：|1、 此岗位为C#/.Net实习生，未来可往服务器后端(.Net Core)、iOS(Xamarin.iOS)、Android(Xamarin.Android)、Mac(Xamarin.Mac)、Windows(.Net Framework)方向发展；|2、 负责根据产品模块设计，编码实现各模块功能；|3、 对公司产品未来可能需要采用的技术进行调研、预演。|任职要求：|1、计算机、软件工程相关专业，本科以上学历，基础知识扎实，可以长期实习，毕业后可直接转正；|2、熟练掌握.Net核心库的使用，了解.Net的运行机制；|3、熟悉至少一种主流数据库，如：SQL Server、MySQL、SQLite等；|4、良好的沟通与表达能力、逻辑思维清晰、较强的动手能力；|5、有进取心、求知欲强烈、对工作充满热情。', '厦门市软件园二期望海路10号楼之三3F', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:54:44');
 INSERT INTO `jobs` VALUES ('CC301785724J00441028105', 'CZ301785720', '服务端开发实习生', '软件/互联网开发/系统集成', '校园', '无经验', '五险一金|年底双薪|绩效奖金|补充医疗保险|定期体检', '五险一金|年底双薪|绩效奖金|补充医疗保险|定期体检|员工旅游|带薪年假|弹性工作', '厦门', '厦门', '4K-8K', '.NET|C#|HTML/CSS|MySQL|JS|ASP', '岗位职责：|1、参与iOS/Android应用及前端站点的接口维护；|2、开发各产品业务对应的管理后台；|3、数据的收集、统计与分析。|任职要求：|1、计算机及相关专业本科以上学历；|2、熟悉JS、HTML、CSS等网页制作技术；|3、熟悉ADO.NET，熟悉SQL语言，对关系型数据库有较好理解；|4、良好的沟通与表达能力、思维逻辑清晰，较强的动手能力；|5、有进取心、求知欲强烈、对工作充满热情。|6、能熟练阅读英文技术文档。', '厦门市软件园二期望海路10号楼之三3F', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:54:11');
 INSERT INTO `jobs` VALUES ('CC301785724J00441159205', 'CZ301785720', 'Android开发实习生', '软件/互联网开发/系统集成', '校园', '无经验', '五险一金|年底双薪|绩效奖金|带薪年假|补充医疗保险', '五险一金|年底双薪|绩效奖金|带薪年假|补充医疗保险|定期体检|节日福利|弹性工作', '厦门', '厦门', '4K-6K', 'AndroidSDK|java|AndroidNDK|androidframework|AndroidStudio|AndroidUI', '岗位职责：|1、负责Android手机应用设计开发；|2、负责Android程序的维护以及改进。|任职要求：|1、计算机及相关专业本科以上学历；|2、基础知识扎实，熟悉常用数据结构与算法知识；|3、熟悉 Java、Android SDK，gradle用法；|4、具有丰富的实际代码编写经验和Android开发经验；|5、熟悉Android界面开发和性能调优；|6、有良好的学习沟通能力，富有团队精神，能承受压力。', '软件园二期望海路10号之三3F', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:52:48');
@@ -153,14 +156,16 @@ CREATE TABLE `message` (
   `target_name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `target_company` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of message
 -- ----------------------------
 BEGIN;
-INSERT INTO `message` VALUES (10, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (11, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', NULL);
+INSERT INTO `message` VALUES (12, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
+INSERT INTO `message` VALUES (13, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '小杜', NULL);
+INSERT INTO `message` VALUES (14, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
+INSERT INTO `message` VALUES (15, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -189,9 +194,10 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
+INSERT INTO `user` VALUES ('onmaV00rq5azWGwsxYXQ22qEsoIw', 'o3yoo45YJZeCkrUcXqvrQR9-TqdU', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 INSERT INTO `user` VALUES ('onmaV01V1-d0ffgOXDsxLPYrIC1g', 'o3yoo4zuVdcYRWwO-3qRjFkmKHrU', '小杜', NULL, '1996.12', '女', '709528701@qq.com', '南平市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV05nWr8oOiGG9dlVN0zcLmMc', 'o3yoo4wnz7oNxJyse9xJzhuBATac', '陈仁忠', 'b25tYVYwNW5XcjhvT2lHRzlkbFZOMHpjTG1NYw==1582300219634.png', '1996.08', '男', '171138739@qq.com', '莆田市', '学生', '很帅', '无工作经验', NULL, NULL, 0);
-INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1582209276697.png', NULL, NULL, '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158220939', 1);
+INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1582811116662.png', NULL, '男', '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158281115', 1);
 INSERT INTO `user` VALUES ('onmaV09z1tYeenqhrhxU7ydeDC1A', 'o3yoo42saxOs9w6wMClhJQFpRzfE', '蓝雪芳', NULL, '1996.07', '女', '1901650964@qq.com', '福州市', '职场人士', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'o3yoo4_NU-2AR3gjxUaHIkMB_azo', '测试号', NULL, '2004.01', '男', '1752321720@qq.com', '北京市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1582114496211.png', '1996.12', '女', '2287944282@qq.com', '漳州市', '学生', '善于沟通', '2018.03', NULL, NULL, 0);
@@ -238,6 +244,6 @@ CREATE TABLE `work_experience` (
   `salary` int(10) NOT NULL,
   `job_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
