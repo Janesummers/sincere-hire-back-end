@@ -63,9 +63,9 @@ var login = (req, resp) => {
     try {
       codes = pc.decryptData(encryptedData , iv);
     } catch (e) {
-      console.log('重复申请引发错误，重新获取');
+      // console.log('重复申请引发错误，重新获取');
       console.log(e.message)
-      resp.json(msgResult.error("重复申请引发错误，重新获取"));
+      resp.json(msgResult.error("Illegal Buffer"));
       return;
     }
 
