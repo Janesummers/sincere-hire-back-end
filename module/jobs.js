@@ -32,7 +32,6 @@ var getPracticeJobs = (req, resp) => {
     data = mysqlOpt.formatParams((page - 1) * num, num);
   }
   
-  // resp.json(msgResult.msg([]))
   mysqlOpt.exec(
     sql,
     data,

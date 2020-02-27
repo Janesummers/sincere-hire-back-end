@@ -15,7 +15,7 @@ var login = (req, resp) => {
   let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
   
   getSessionKey();
-  function getSessionKey () {
+  function getSessionKey (id) {
     https.get(url, data => {
       var str="";
       data.on("data",function(chunk){
@@ -24,13 +24,14 @@ var login = (req, resp) => {
       data.on("end",function(){
         console.log(str.toString())
         code2Session = JSON.parse(str.toString());
-
+        console.log('code2Session', code2Session);
+        console.log(code2Session.openid)
         getUser();
-
+        
         function getUser () {
           mysqlOpt.exec(
             "select * from user where openId = ?",
-            mysqlOpt.formatParams(code2Session.openid),
+            mysqlOpt.formatParams(code2Session.openid || id),
             (res) => {
               if (res.length > 0) {
                 resp.json(msgResult.msg(res));
@@ -57,7 +58,16 @@ var login = (req, resp) => {
     var iv = decodeURIComponent(data.iv);
     var pc = new WXBizDataCrypt(appId, sessionKey);
 
-    var codes = pc.decryptData(encryptedData , iv);
+    var codes = '';
+
+    try {
+      codes = pc.decryptData(encryptedData , iv);
+    } catch (e) {
+      console.log('重复申请引发错误，重新获取');
+      console.log(e.message)
+      resp.json(msgResult.error("重复申请引发错误，重新获取"));
+      return;
+    }
 
     console.log('解密后 data: ', codes);
 
