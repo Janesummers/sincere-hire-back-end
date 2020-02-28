@@ -116,8 +116,8 @@ let getUserCollect = (req, resp) => {
   mysqlOpt.exec(
     `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
      from jobs as job, company as comp, collect as col, user as u
-     where job.job_id = col.job_id and job.company_id = comp.company_id and col.unionid and job.publisher_id = u.unionid = ?`,
-    mysqlOpt.formatParams(unionid),
+     where job.job_id = col.job_id and job.company_id = comp.company_id and col.unionid = ? and u.unionid = ?`,
+    mysqlOpt.formatParams(unionid, unionid),
     (res) => {
       resp.json(msgResult.msg(res));
       return;
