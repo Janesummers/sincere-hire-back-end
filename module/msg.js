@@ -26,9 +26,9 @@ var getMessageList = (req, resp) => {
   // }
 
   mysqlOpt.exec(
-    `select *
-    from message
-    where ascription_id = ?`,
+    `select msg.*,(SELECT avatarUrl from user where unionid = msg.target_id) as avatarUrl
+    from message as msg, user as u
+    where msg.ascription_id = ? and msg.target_id = u.unionid`,
     mysqlOpt.formatParams(unionid),
     res => {
       resp.json(msgResult.msg(res));
