@@ -1,17 +1,17 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : cms
+ Source Server         : clq
  Source Server Type    : MySQL
  Source Server Version : 50728
- Source Host           : 134.175.68.141:3306
+ Source Host           : localhost:3306
  Source Schema         : qz
 
  Target Server Type    : MySQL
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 27/02/2020 23:14:07
+ Date: 28/02/2020 11:49:33
 */
 
 SET NAMES utf8mb4;
@@ -39,7 +39,6 @@ INSERT INTO `collect` VALUES (9, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC485028532J00
 INSERT INTO `collect` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC120019970J00082678411');
 INSERT INTO `collect` VALUES (11, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC000405335J00357872406');
 INSERT INTO `collect` VALUES (12, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229223900020200221');
-INSERT INTO `collect` VALUES (13, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158229198600020200221');
 INSERT INTO `collect` VALUES (16, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC120019970J00082678411');
 INSERT INTO `collect` VALUES (17, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC158246566700020200223');
 COMMIT;
@@ -79,7 +78,6 @@ INSERT INTO `company` VALUES ('CZ701516780', '掌门1对1教学部（中国）',
 INSERT INTO `company` VALUES ('CZ815413650', '厦门贝壳闹海房地产经纪有限公司', '10000人以上', '民营');
 INSERT INTO `company` VALUES ('CZ824417960', '君泉资产管理有限公司', '20人以下', '民营');
 INSERT INTO `company` VALUES ('QZ158220939', '福建探极贸易有限公司', '50-150人', '民营');
-INSERT INTO `company` VALUES ('QZ158281115', '福建探极贸易有限公司', '15-50人', '民营');
 COMMIT;
 
 -- ----------------------------
@@ -156,7 +154,7 @@ CREATE TABLE `message` (
   `target_name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `target_company` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of message
@@ -164,8 +162,12 @@ CREATE TABLE `message` (
 BEGIN;
 INSERT INTO `message` VALUES (12, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
 INSERT INTO `message` VALUES (13, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '小杜', NULL);
-INSERT INTO `message` VALUES (14, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (15, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', NULL);
+INSERT INTO `message` VALUES (16, 'onmaV00rq5azWGwsxYXQ22qEsoIw', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
+INSERT INTO `message` VALUES (17, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV00rq5azWGwsxYXQ22qEsoIw', '帅', NULL);
+INSERT INTO `message` VALUES (18, 'onmaV09z1tYeenqhrhxU7ydeDC1A', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建帝视信息科技有限公司');
+INSERT INTO `message` VALUES (19, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV09z1tYeenqhrhxU7ydeDC1A', '蓝雪芳', NULL);
+INSERT INTO `message` VALUES (20, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建帝视信息科技有限公司');
+INSERT INTO `message` VALUES (21, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', NULL);
 COMMIT;
 
 -- ----------------------------
@@ -194,13 +196,13 @@ CREATE TABLE `user` (
 -- Records of user
 -- ----------------------------
 BEGIN;
-INSERT INTO `user` VALUES ('onmaV00rq5azWGwsxYXQ22qEsoIw', 'o3yoo45YJZeCkrUcXqvrQR9-TqdU', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `user` VALUES ('onmaV00rq5azWGwsxYXQ22qEsoIw', 'o3yoo45YJZeCkrUcXqvrQR9-TqdU', '帅', 'b25tYVYwMHJxNWF6V0d3c3hZWFEyMnFFc29Jdw==1582817612605.png', '2004.01', '男', '8888@555.88', '北京市', '学生', '帅就完了', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV01V1-d0ffgOXDsxLPYrIC1g', 'o3yoo4zuVdcYRWwO-3qRjFkmKHrU', '小杜', NULL, '1996.12', '女', '709528701@qq.com', '南平市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV05nWr8oOiGG9dlVN0zcLmMc', 'o3yoo4wnz7oNxJyse9xJzhuBATac', '陈仁忠', 'b25tYVYwNW5XcjhvT2lHRzlkbFZOMHpjTG1NYw==1582300219634.png', '1996.08', '男', '171138739@qq.com', '莆田市', '学生', '很帅', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1582811116662.png', NULL, '男', '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158281115', 1);
 INSERT INTO `user` VALUES ('onmaV09z1tYeenqhrhxU7ydeDC1A', 'o3yoo42saxOs9w6wMClhJQFpRzfE', '蓝雪芳', NULL, '1996.07', '女', '1901650964@qq.com', '福州市', '职场人士', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'o3yoo4_NU-2AR3gjxUaHIkMB_azo', '测试号', NULL, '2004.01', '男', '1752321720@qq.com', '北京市', '学生', '', '无工作经验', NULL, NULL, 0);
-INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1582114496211.png', '1996.12', '女', '2287944282@qq.com', '漳州市', '学生', '善于沟通', '2018.03', NULL, NULL, 0);
+INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', NULL, '2004.01', '男', '1752321720@qq.com', '漳州市', '学生', '', '无工作经验', NULL, NULL, 0);
 COMMIT;
 
 -- ----------------------------
@@ -216,17 +218,18 @@ CREATE TABLE `user_education` (
   `time_enrollment` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `time_graduation` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user_education
 -- ----------------------------
 BEGIN;
-INSERT INTO `user_education` VALUES (8, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '闽江学院', '软件工程', '本科', '2018.09', '2020.07');
 INSERT INTO `user_education` VALUES (9, 'onmaV09z1tYeenqhrhxU7ydeDC1A', '福建师范大学协和学院', '金融学', '本科', '2015.09', '2019.06');
 INSERT INTO `user_education` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '闽江学院', '软件工程', '本科', '2018.09', '2020.06');
 INSERT INTO `user_education` VALUES (11, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '闽江学院', '软件工程', '本科', '2018.09', '2020.06');
 INSERT INTO `user_education` VALUES (12, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '闽江学院', '软件工程', '本科', '2020.01', '2021.01');
+INSERT INTO `user_education` VALUES (13, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '闽江学院', '软件工程', '本科', '2020.01', '2023.01');
+INSERT INTO `user_education` VALUES (14, 'onmaV00rq5azWGwsxYXQ22qEsoIw', '来来来', '教授', '博士', '2020.01', '2020.12');
 COMMIT;
 
 -- ----------------------------
