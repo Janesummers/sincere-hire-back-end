@@ -254,13 +254,21 @@ let getMyRelease = (req, resp) => {
     return;
   }
 
+  let {
+    num = 10,
+    page = 1,
+    company_id
+  } = req.query;
+  num = parseInt(num);
+  page = parseInt(page);
+
   console.log('用户请求：getMyRelease');
 
   mysqlOpt.exec(
     `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
     from jobs as job, company as comp
-     where publisher_id = ? and job.company_id = comp.company_id and job.company_id = ?`,
-    mysqlOpt.formatParams(unionid, req.query.company_id),
+     where publisher_id = ? and job.company_id = comp.company_id and job.company_id = ? limit ?, ?`,
+    mysqlOpt.formatParams(unionid, company_id, (page - 1) * num, num),
     (res) => {
       resp.json(msgResult.msg(res))
     },

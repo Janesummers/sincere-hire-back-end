@@ -330,7 +330,7 @@ var getUserInfo = (req, resp) => {
 
   function getInfo () {
     mysqlOpt.exec(
-      `select nickname as name,avatarUrl,birthday,sex,email,city,identity,advantage,jobTime,company_id,rule
+      `select nickname as name,avatarUrl,birthday,sex,email,city,identity,advantage,jobTime,position,company_id,rule
        from user
        where unionid = ?`,
       mysqlOpt.formatParams(unionid),
