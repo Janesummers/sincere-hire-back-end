@@ -145,6 +145,10 @@ app.get('/getMyRelease', (req, resp) => {
   jobs.getMyRelease(req, resp);
 })
 
+app.post('/getJobDetail', (req, resp) => {
+  jobs.getJobDetail(req, resp);
+})
+
 
 
 app.listen(8888, () => {
