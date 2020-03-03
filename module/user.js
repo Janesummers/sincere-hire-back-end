@@ -317,6 +317,66 @@ var addEducation = (req, resp) => {
   );
 }
 
+var changeEducation = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  let {
+    school,
+    edu,
+    major,
+    time_enrollment,
+    time_graduation,
+    edu_id
+  } = qs.parse(req.body);
+
+  console.log('用户请求：changeEducation')
+
+  mysqlOpt.exec(
+    `update user_education
+    set school = ?,major = ?,education = ?,time_enrollment = ?,time_graduation = ?
+    where unionid = ? and id = ?`,
+    mysqlOpt.formatParams(school, major, edu, time_enrollment, time_graduation, unionid, edu_id),
+    (res) => {
+      resp.json(msgResult.msg(res));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("教育信息更新错误"));
+    }
+  );
+}
+
+var delEducation = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  let {
+    edu_id
+  } = qs.parse(req.body);
+
+  console.log('用户请求：delEducation')
+
+  mysqlOpt.exec(
+    `delete from user_education
+     where unionid = ? and id = ?`,
+    mysqlOpt.formatParams(unionid, edu_id),
+    (res) => {
+      resp.json(msgResult.msg(res));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("教育信息删除错误"));
+    }
+  );
+}
+
 var getUserInfo = (req, resp) => {
   let unionid = req.query.unionid;
   if (!unionid || unionid.length != 28) {
@@ -414,7 +474,69 @@ var addWorkExperience = (req, resp) => {
     },
     e => {
       console.log(msgResult.error(e.message));
-      resp.json(msgResult.error("教育信息保存错误"));
+      resp.json(msgResult.error("工作经历信息保存错误"));
+    }
+  );
+}
+
+var changeWorkExperience = (req, resp) => {
+  let unionid = req.query.unionid;
+  let query = qs.parse(req.body);
+  let {
+    name,
+    position,
+    hiredate,
+    leavedate,
+    industry,
+    monthly_salary,
+    job_description,
+    word_id
+  } = query;
+
+  if (!unionid || unionid.length != 28 || !name || !position || !hiredate || !leavedate || !industry || !monthly_salary || !job_description || !word_id) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  monthly_salary = parseInt(monthly_salary)
+
+  mysqlOpt.exec(
+    `update work_experience
+     set company_name = ?,position = ?,hiredate = ?,leavedate = ?,industry = ?,salary = ?,job_description = ?
+     where unionid = ? and id = ?`,
+    mysqlOpt.formatParams(name, position, hiredate, leavedate, industry, monthly_salary, job_description, unionid, parseInt(word_id)),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("工作经历信息更新错误"));
+    }
+  );
+}
+
+var delWorkExperience = (req, resp) => {
+  let unionid = req.query.unionid;
+  let query = qs.parse(req.body);
+  let {
+    word_id
+  } = query;
+
+  if (!unionid || unionid.length != 28 || !word_id) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  mysqlOpt.exec(
+    `delete from work_experience
+     where unionid = ? and id = ?`,
+    mysqlOpt.formatParams(unionid, parseInt(word_id)),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("工作经历信息删除错误"));
     }
   );
 }
@@ -483,5 +605,9 @@ module.exports = {
   addEducation,
   addWorkExperience,
   getUserWork,
-  saveEvaluate
+  saveEvaluate,
+  changeWorkExperience,
+  delWorkExperience,
+  delEducation,
+  changeEducation
 };

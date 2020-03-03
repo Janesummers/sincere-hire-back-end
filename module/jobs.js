@@ -18,7 +18,7 @@ var getPracticeJobs = (req, resp) => {
   } = qs.parse(req.body);
   num = parseInt(num);
   page = parseInt(page);
-  let sql = '';
+  let sql;
   let data;
   if (emplType) {
     sql = `select job.job_id, job.job_name, job.city, job.recruit, job.salary, job.update_date, comp.company_name,comp.type as company_type

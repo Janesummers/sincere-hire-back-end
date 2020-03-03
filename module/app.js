@@ -68,12 +68,28 @@ app.post('/addEducation', (req, resp) => {
   user.addEducation(req, resp);
 })
 
+app.post('/changeEducation', (req, resp) => {
+  user.changeEducation(req, resp);
+})
+
+app.post('/delEducation', (req, resp) => {
+  user.delEducation(req, resp);
+})
+
 app.get('/getUserInfo', (req, resp) => {
   user.getUserInfo(req, resp);
 })
 
 app.post('/addWorkExperience', (req, resp) => {
   user.addWorkExperience(req, resp);
+})
+
+app.post('/changeWorkExperience', (req, resp) => {
+  user.changeWorkExperience(req, resp);
+})
+
+app.post('/delWorkExperience', (req, resp) => {
+  user.delWorkExperience(req, resp);
 })
 
 app.get('/getUserWork', (req, resp) => {
