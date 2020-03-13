@@ -26,8 +26,8 @@ function runServer () {
     });
     //客户端发送消息时会触发这个
     ws.on('message', function incoming(data) {
-      let {msg, client, to, time, name} = JSON.parse(data);
-      let filename = message.save(msg, client, to, time);
+      let {msg, client, to, time, name, type} = JSON.parse(data);
+      let filename = message.save(msg, client, to, time, type);
       let data2 = fs.readFileSync(filename, 'utf8');
       to = Base64.decode(to);
       client = Base64.decode(client);
@@ -38,7 +38,8 @@ function runServer () {
           let messages = {
             msg,
             all: data2.toString(),
-            sendUser: name
+            sendUser: name,
+            type
           };
           messages = JSON.stringify(messages);
           client.send(messages);

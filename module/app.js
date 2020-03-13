@@ -100,6 +100,10 @@ app.post('/saveEvaluate', (req, resp) => {
   user.saveEvaluate(req, resp);
 });
 
+app.get('/getUserResume', (req, resp) => {
+  user.getUserResume(req, resp);
+})
+
 const openData = require('./openData');
 
 app.get("/getCity", (req, resp) => {

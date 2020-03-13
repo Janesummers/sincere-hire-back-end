@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
 
-function save (msg, client, to, time) {
+function save (msg, client, to, time, type) {
   let data = {
     data: msg,
     sendId: client,
     acceptId: to,
-    time
+    time,
+    type
   };
   data = JSON.stringify(data, null, 2);
 

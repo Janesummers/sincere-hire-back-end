@@ -588,6 +588,72 @@ var saveEvaluate = (req, resp) => {
   );
 }
 
+let getUserResume = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+  let query = req.query;
+  console.log('用户请求：getUserResume');
+  
+  let getUserEdu = new Promise((resolve, reject) => {
+    mysqlOpt.exec(
+      `select * from user_education
+       where unionid = ?`,
+      mysqlOpt.formatParams(query.uid),
+      (res) => {
+        resolve(res);
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        reject(e.message);
+      }
+    );  
+  })
+
+  let getUserWork = new Promise((resolve, reject) => {
+    mysqlOpt.exec(
+      `select * from work_experience
+       where unionid = ?`,
+      mysqlOpt.formatParams(query.uid),
+      (res) => {
+        resolve(res);
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        reject(e.message);
+      }
+    );  
+  })
+
+  let getUserAdv = new Promise((resolve, reject) => {
+    mysqlOpt.exec(
+      `select advantage from user
+       where unionid = ?`,
+      mysqlOpt.formatParams(query.uid),
+      (res) => {
+        resolve(res);
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        reject(e.message);
+      }
+    );  
+  });
+
+  let allDone = Promise.all([getUserEdu, getUserWork, getUserAdv]);
+  
+  allDone.then(res => {
+    console.log(res)
+    resp.json(msgResult.msg('ok'));
+  }).catch(err => {
+    console.log(err);
+    resp.json(msgResult.error("用户数据获取失败"));
+  })
+
+}
+
 
 
 
@@ -609,5 +675,6 @@ module.exports = {
   changeWorkExperience,
   delWorkExperience,
   delEducation,
-  changeEducation
+  changeEducation,
+  getUserResume
 };
