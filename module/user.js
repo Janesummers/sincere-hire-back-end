@@ -422,17 +422,19 @@ var getUserInfo = (req, resp) => {
           } else {
             info.rule = 'recruiter'
           }
-          let age = 0;
-          let birthday = info.birthday.match(/[^\.]+/g);
-          var year = parseInt(birthday[0]);
-          var month = parseInt(birthday[1]);
-          let date = new Date();
-          if (month < date.getMonth() + 1) {
-            age = new Date().getFullYear() - year;
-          } else {
-            age = new Date().getFullYear() - year - 1;
+          if (info.birthday) {
+            let age = 0;
+            let birthday = info.birthday.match(/[^\.]+/g);
+            var year = parseInt(birthday[0]);
+            var month = parseInt(birthday[1]);
+            let date = new Date();
+            if (month < date.getMonth() + 1) {
+              age = new Date().getFullYear() - year;
+            } else {
+              age = new Date().getFullYear() - year - 1;
+            }
+            info.age = age;
           }
-          info.age = age;
         }
         
         resp.json(msgResult.msg(info));
@@ -603,7 +605,8 @@ let getUserResume = (req, resp) => {
        where unionid = ?`,
       mysqlOpt.formatParams(query.uid),
       (res) => {
-        resolve(res);
+        let data = JSON.parse(JSON.stringify(res));
+        resolve(data);
       },
       e => {
         console.log(msgResult.error(e.message));
@@ -618,7 +621,8 @@ let getUserResume = (req, resp) => {
        where unionid = ?`,
       mysqlOpt.formatParams(query.uid),
       (res) => {
-        resolve(res);
+        let data = JSON.parse(JSON.stringify(res));
+        resolve(data);
       },
       e => {
         console.log(msgResult.error(e.message));
@@ -633,7 +637,8 @@ let getUserResume = (req, resp) => {
        where unionid = ?`,
       mysqlOpt.formatParams(query.uid),
       (res) => {
-        resolve(res);
+        let data = JSON.parse(JSON.stringify(res));
+        resolve(data);
       },
       e => {
         console.log(msgResult.error(e.message));
@@ -646,7 +651,11 @@ let getUserResume = (req, resp) => {
   
   allDone.then(res => {
     console.log(res)
-    resp.json(msgResult.msg('ok'));
+    let resume = {};
+    resume.edu = res[0];
+    resume.work = res[1];
+    resume.adv = res[2].advantage || '';
+    resp.json(msgResult.msg(resume));
   }).catch(err => {
     console.log(err);
     resp.json(msgResult.error("用户数据获取失败"));
