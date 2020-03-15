@@ -217,39 +217,31 @@ var saveTopic = (req, resp) => {
   console.log('用户请求：saveTopic');
   let {
     content,
-    titles,
+    title,
     ids
   } = query;
 
   let n = contents.length;
   let i = 0;
 
-  while (n > 0) {
-
-    mysqlOpt.exec(
-      `insert into hot_topic 
-       values (?,?,?,?,?,?)`,
-      mysqlOpt.formatParams(
-        null,
-        ids[i],
-        titles[i],
-        content[i],
-        0,
-        0
-      ),
-      (res) => {
-        if (n > 0) {
-          n--;
-        } else {
-          resp.json(msgResult.msg('ok'))
-        }
-      },
-      e => {
-        console.log(msgResult.error(e.message));
-      }
-    );
-
-  }
+  mysqlOpt.exec(
+    `insert into hot_topic 
+     values (?,?,?,?,?,?)`,
+    mysqlOpt.formatParams(
+      null,
+      ids,
+      title,
+      content,
+      0,
+      0
+    ),
+    (res) => {
+      resp.json(msgResult.msg('ok'))
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+    }
+  );
 }
 
 module.exports = {
