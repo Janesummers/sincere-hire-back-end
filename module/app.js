@@ -131,11 +131,6 @@ app.post("/saveMessageList", (req, resp) => {
   msg.saveMessageList(req, resp);
 })
 
-const reptile = require('./reptile');
-app.post('/saveJobInfo', (req, resp) => {
-  reptile.saveJobInfo(req, resp);
-})
-
 const jobs = require('./jobs');
 app.post('/getPracticeJobs', (req, resp) => {
   jobs.getPracticeJobs(req, resp);
@@ -167,6 +162,15 @@ app.get('/getMyRelease', (req, resp) => {
 
 app.post('/getJobDetail', (req, resp) => {
   jobs.getJobDetail(req, resp);
+})
+
+const reptile = require('./reptile');
+app.post('/saveJobInfo', (req, resp) => {
+  reptile.saveJobInfo(req, resp);
+})
+
+app.post('/saveTopic', (req, resp) => {
+  reptile.saveTopic(req, resp);
 })
 
 
