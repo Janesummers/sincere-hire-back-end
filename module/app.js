@@ -173,6 +173,15 @@ app.post('/saveTopic', (req, resp) => {
   reptile.saveTopic(req, resp);
 })
 
+const hotTopic = require('./hotTopic');
+app.post('/getHotTopic', (req, resp) => {
+  hotTopic.getHotTopic(req, resp);
+})
+
+app.get('/updateTopicRead', (req, resp) => {
+  hotTopic.updateTopicRead(req, resp);
+})
+
 
 
 app.listen(8888, () => {
