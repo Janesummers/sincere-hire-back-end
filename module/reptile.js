@@ -221,9 +221,6 @@ var saveTopic = (req, resp) => {
     ids
   } = query;
 
-  let n = contents.length;
-  let i = 0;
-
   mysqlOpt.exec(
     `insert into hot_topic 
      values (?,?,?,?,?,?)`,
