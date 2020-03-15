@@ -212,7 +212,7 @@ var saveJobs = () => {
   }
 }
 
-var saveTopic = () => {
+var saveTopic = (req, resp) => {
   let query = qs.parse(req.body)
   console.log('用户请求：saveTopic');
   let {
