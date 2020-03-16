@@ -182,6 +182,19 @@ app.get('/updateTopicRead', (req, resp) => {
   hotTopic.updateTopicRead(req, resp);
 })
 
+app.post('/commitAnswer', (req, resp) => {
+  hotTopic.commitAnswer(req, resp);
+})
+
+app.post('/getAnswerList', (req, resp) => {
+  hotTopic.getAnswerList(req, resp);
+})
+
+const epidemic = require('./epidemic');
+app.get('/getEpidemic', (req, resp) => {
+  epidemic.getEpidemic(req, resp);
+})
+
 
 
 app.listen(8888, () => {
