@@ -30,7 +30,9 @@ var login = (req, resp) => {
         
         function getUser () {
           mysqlOpt.exec(
-            "select * from user where openId = ?",
+            `select u.*, edu.school, edu.major
+             from user as u, user_education as edu
+             where u.openId = ? and u.unionid = edu.unionid limit 1`,
             mysqlOpt.formatParams(code2Session.openid || id),
             (res) => {
               if (res.length > 0) {
@@ -164,7 +166,7 @@ var saveRecruiter = (req, resp) => {
       mysqlOpt.formatParams(company_id, company, scale, type),
       (res) => {
         resp.json(msgResult.msg({
-          name, sex, email, position, company_id, scale, rule
+          name, sex, email, position, company_id, scale, rule, major, school
         }));
       },
       e => {
