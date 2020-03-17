@@ -190,6 +190,22 @@ app.post('/getAnswerList', (req, resp) => {
   hotTopic.getAnswerList(req, resp);
 })
 
+app.get('/attentionTopic', (req, resp) => {
+  hotTopic.attentionTopic(req, resp);
+})
+
+app.get('/cancelAttention', (req, resp) => {
+  hotTopic.cancelAttention(req, resp);
+})
+
+app.get('/getOnceAttention', (req, resp) => {
+  hotTopic.getOnceAttention(req, resp);
+})
+
+app.post('/getAttentionList', (req, resp) => {
+  hotTopic.getAttentionList(req, resp);
+})
+
 const epidemic = require('./epidemic');
 app.get('/getEpidemic', (req, resp) => {
   epidemic.getEpidemic(req, resp);
