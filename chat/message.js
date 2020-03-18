@@ -1,14 +1,18 @@
 const fs = require('fs');
 const path = require('path');
+const mysqlOpt = require('../util/mysqlOpt');
+const msgResult = require('../module/msgResult');
+const util = require('../util/util');
 
-function save (msg, client, to, time, type, read) {
+function save (msg, client, to, time, type, read, invite_id) {
   let data = {
     data: msg,
     sendId: client,
     acceptId: to,
     time,
     type,
-    read
+    read,
+    invite_id
   };
   data = JSON.stringify(data, null, 2);
 
@@ -51,7 +55,39 @@ function updateRead (client, to) {
   }
 }
 
+let invitation = (client, to, time, invite_id, other) => {
+  queryJob();
+  function queryJob () {
+    mysqlOpt.exec(
+      `select * from jobs where job_id = ?`,
+      mysqlOpt.formatParams(other.job_id),
+      (res) => {
+        insert(res);
+        return;
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+      }
+    );
+  }
+  function insert (res) {
+    let job = JSON.parse(JSON.stringify(res))[0];
+    mysqlOpt.exec(
+      `insert into invite_interview
+      values (?,?,?,?,?,?,?,?,?,?,?)`,
+      mysqlOpt.formatParams(null, invite_id, to, client, `${other.interDate} ${other.interTime}`, other.sendCompany , job.job_name, job.job_address, other.interText, 0, time),
+      (res) => {
+        return;
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+      }
+    );
+  }
+}
+
 module.exports = {
   save,
-  updateRead
+  updateRead,
+  invitation
 }

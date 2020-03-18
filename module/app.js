@@ -131,6 +131,18 @@ app.post("/saveMessageList", (req, resp) => {
   msg.saveMessageList(req, resp);
 })
 
+app.get('/getInviteList', (req, resp) => {
+  msg.getInviteList(req, resp);
+})
+
+app.get('/updateInvite', (req, resp) => {
+  msg.updateInvite(req, resp);
+})
+
+app.post('/getOnceInvite', (req, resp) => {
+  msg.getOnceInvite(req, resp);
+})
+
 const jobs = require('./jobs');
 app.post('/getPracticeJobs', (req, resp) => {
   jobs.getPracticeJobs(req, resp);

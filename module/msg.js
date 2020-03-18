@@ -13,7 +13,7 @@ var getMessageList = (req, resp) => {
   }
   let unionid = Base64.decode(params.id);
 
-  let sql = '';
+  // let sql = '';
 
   // if (params.rule != 'job_seeker') {
   //   sql = `select u.*, comp.company_name  
@@ -26,7 +26,7 @@ var getMessageList = (req, resp) => {
   // }
 
   mysqlOpt.exec(
-    `select msg.*,(SELECT avatarUrl from user where unionid = msg.target_id) as avatarUrl
+    `select msg.*, u.avatarUrl
     from message as msg, user as u
     where msg.ascription_id = ? and msg.target_id = u.unionid`,
     mysqlOpt.formatParams(unionid),
@@ -92,7 +92,8 @@ var saveMessageList = (req, resp) => {
     id,
     name,
     company,
-    commit_name
+    commit_name,
+    job_id
   } = qs.parse(req.body);
   check();
   function check () {
@@ -132,9 +133,9 @@ var saveMessageList = (req, resp) => {
 
   function insertTarget() {
     mysqlOpt.exec(
-      `insert into message (ascription_id, target_id, target_name)
-       values (?,?,?)`,
-      mysqlOpt.formatParams(id, unionid, commit_name),
+      `insert into message (ascription_id, target_id, target_name, target_company, job_id)
+       values (?,?,?,?)`,
+      mysqlOpt.formatParams(id, unionid, commit_name, company, job_id),
       (res) => {
         resp.json(msgResult.msg('ok'));
         return;
@@ -145,11 +146,69 @@ var saveMessageList = (req, resp) => {
       }
     );
   }
+}
 
+let getInviteList = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getInviteList');
+
+  mysqlOpt.exec(
+    `select invite.*, u.nickname as recruiter_name, u.position, u.avatarUrl
+     from invite_interview as invite, user as u 
+     where invite.unionid = ? and u.unionid = invite.invite_user_id`,
+    mysqlOpt.formatParams(unionid),
+    (res) => {
+      resp.json(msgResult.msg(res));
+      return;
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error('获取面试邀请列表失败'));
+    }
+  );
+}
+
+let getOnceInvite = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getOnceInvite');
+
+  let id = qs.parse(req.body).id;
+
+  mysqlOpt.exec(
+    `select invite.*, u.nickname as recruiter_name, u.position, u.avatarUrl
+     from invite_interview as invite, user as u 
+     where invite.invite_id = ? and u.unionid = invite.invite_user_id`,
+    mysqlOpt.formatParams(id),
+    (res) => {
+      resp.json(msgResult.msg(res));
+      return;
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error('获取面试邀请失败'));
+    }
+  );
+}
+
+let updateInvite = (req, resp) => {
+  
 }
 
 module.exports = {
   getMessageList,
   getMessage,
-  saveMessageList
+  saveMessageList,
+  getInviteList,
+  updateInvite,
+  getOnceInvite
 };
