@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 17/03/2020 21:46:02
+ Date: 18/03/2020 22:24:40
 */
 
 SET NAMES utf8mb4;
@@ -143,6 +143,32 @@ INSERT INTO `hot_topic` VALUES (48, '1B8708E00EC347A5816750BE29F40522', '要不�
 COMMIT;
 
 -- ----------------------------
+-- Table structure for invite_interview
+-- ----------------------------
+DROP TABLE IF EXISTS `invite_interview`;
+CREATE TABLE `invite_interview` (
+  `id` int(10) NOT NULL AUTO_INCREMENT,
+  `invite_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `unionid` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_user_id` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_time` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_company` varchar(50) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_job` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_addr` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `invite_remark` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `status` int(3) DEFAULT NULL,
+  `update_time` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- ----------------------------
+-- Records of invite_interview
+-- ----------------------------
+BEGIN;
+INSERT INTO `invite_interview` VALUES (3, 'YQ2020031822065317137', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-18 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', '带上简历', 0, '1584540413720');
+COMMIT;
+
+-- ----------------------------
 -- Table structure for jobs
 -- ----------------------------
 DROP TABLE IF EXISTS `jobs`;
@@ -214,6 +240,7 @@ CREATE TABLE `message` (
   `target_id` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `target_name` varchar(40) COLLATE utf8_unicode_ci NOT NULL,
   `target_company` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
+  `job_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=40 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -221,18 +248,18 @@ CREATE TABLE `message` (
 -- Records of message
 -- ----------------------------
 BEGIN;
-INSERT INTO `message` VALUES (12, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (13, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '小杜', NULL);
-INSERT INTO `message` VALUES (16, 'onmaV00rq5azWGwsxYXQ22qEsoIw', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (17, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV00rq5azWGwsxYXQ22qEsoIw', '帅', NULL);
-INSERT INTO `message` VALUES (18, 'onmaV09z1tYeenqhrhxU7ydeDC1A', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建帝视信息科技有限公司');
-INSERT INTO `message` VALUES (19, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV09z1tYeenqhrhxU7ydeDC1A', '蓝雪芳', NULL);
-INSERT INTO `message` VALUES (26, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (27, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '测试号', NULL);
-INSERT INTO `message` VALUES (28, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (29, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '陈仁忠', NULL);
-INSERT INTO `message` VALUES (38, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司');
-INSERT INTO `message` VALUES (39, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', NULL);
+INSERT INTO `message` VALUES (12, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (13, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '小杜', '福建探极贸易有限公司', 'CC158417038800020200314');
+INSERT INTO `message` VALUES (16, 'onmaV00rq5azWGwsxYXQ22qEsoIw', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (17, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV00rq5azWGwsxYXQ22qEsoIw', '帅', '福建探极贸易有限公司', 'CC158417038800020200314');
+INSERT INTO `message` VALUES (18, 'onmaV09z1tYeenqhrhxU7ydeDC1A', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (19, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV09z1tYeenqhrhxU7ydeDC1A', '蓝雪芳', '福建探极贸易有限公司', 'CC158417038800020200314');
+INSERT INTO `message` VALUES (26, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (27, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '测试号', '福建探极贸易有限公司', 'CC158417038800020200314');
+INSERT INTO `message` VALUES (28, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (29, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '陈仁忠', '福建探极贸易有限公司', 'CC158417038800020200314');
+INSERT INTO `message` VALUES (38, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
+INSERT INTO `message` VALUES (39, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', '福建探极贸易有限公司', 'CC158417038800020200314');
 COMMIT;
 
 -- ----------------------------
@@ -308,7 +335,7 @@ BEGIN;
 INSERT INTO `user` VALUES ('onmaV00rq5azWGwsxYXQ22qEsoIw', 'o3yoo45YJZeCkrUcXqvrQR9-TqdU', '帅', 'b25tYVYwMHJxNWF6V0d3c3hZWFEyMnFFc29Jdw==1582817612605.png', '2004.01', '男', '8888@555.88', '北京市', '学生', '帅就完了', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV01V1-d0ffgOXDsxLPYrIC1g', 'o3yoo4zuVdcYRWwO-3qRjFkmKHrU', '小杜', NULL, '1996.12', '女', '709528701@qq.com', '南平市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV05nWr8oOiGG9dlVN0zcLmMc', 'o3yoo4wnz7oNxJyse9xJzhuBATac', '陈仁忠', 'b25tYVYwNW5XcjhvT2lHRzlkbFZOMHpjTG1NYw==1582897537566.png', '1996.08', '男', '171138739@qq.com', '莆田市', '学生', '很帅', '无工作经验', NULL, NULL, 0);
-INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1584341068586.png', NULL, '男', '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158417023', 1);
+INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1584341068586.png', '1997.01', '男', '1752321720@qq.com', '漳州市', '学生', '很帅', '无工作经验', '经理', 'QZ158417023', 1);
 INSERT INTO `user` VALUES ('onmaV09z1tYeenqhrhxU7ydeDC1A', 'o3yoo42saxOs9w6wMClhJQFpRzfE', '蓝雪芳', NULL, '1996.07', '女', '1901650964@qq.com', '福州市', '职场人士', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'o3yoo4_NU-2AR3gjxUaHIkMB_azo', '测试号', NULL, '2004.01', '男', '1752321720@qq.com', '北京市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1584170259539.png', '1997.01', '女', '2287944282@qq.com', '漳州市', '学生', '善于发现', '无工作经验', NULL, NULL, 0);
