@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 18/03/2020 22:24:40
+ Date: 19/03/2020 23:39:29
 */
 
 SET NAMES utf8mb4;
@@ -92,8 +92,8 @@ CREATE TABLE `hot_topic` (
 -- Records of hot_topic
 -- ----------------------------
 BEGIN;
-INSERT INTO `hot_topic` VALUES (1, 'ff84c118f2a8433d922dfbe45e7df8a8', '#疫情下劳动用工指南#公司提前复工，HR和员工该怎么办？', '疫情期间，公司的一举一动，最见一家公司的格局。在大多数公司都延迟复工的时候，也有不少的公司，仍然按照原来的计划复工，甚至在延长春节假期的政策出台后，要求提前复工。|有的人会觉得，公司的这种规定，实在让人寒心。当我们真正遇到的时候，辞职不去了吗？|毕竟除了涉及保障疫情防控地区、群众生活必要的、涉及国计民生的相关企业需要提前复工外，其他企业提前复工的是少之又少。如果真的需要提前复工，HR和员工，需要做好下面几点。|对于HR来说：|第一、务必和公司领导进行详细沟通。|最好结合当前国务院发布的延长春节假期政策，以及不遵守政策后可能带来的法律责任，需要对其进行详细解释。如果沟通完毕，领导们考虑到公司运营成本和生产成本，还是决定要提前复工，那么HR就要做好下一步通知到员工的准备。|第二、务必将此次公司提前复工的决定及时通知到员工个人，并做好相应的请假考勤制度。|考虑到有些员工可能会以请假来延长到岗时间，所以这部分的规定一定要和员工沟通好，避免未能及时保障员工权益。|第三、HR需要及时为复工期间的疫情防护做好准备。|像一些基本的防护物资，诸如消毒水、口罩、体温计等，都需要提前准备就绪。虽然现在对于口罩是否由公司来提供，存在不少的议论。但是出于疫情期间安全的考虑，公司准备口罩也是应该的，试想一下员工未带口罩感染疫情，那么HR心里会不会觉得这是自己的一次失误呢？疫情出现后是不是会给公司带来更大的损失呢？|虽然有部分网友觉得戴口罩是员工个人的事情，但是本着疫情防护优先原则，公司HR准备一些口罩，也是很有必要的。|第四、复工期间做好员工的身体检查工作。|比如每天分三次对员工的体温进行检测，及时登记备案。还要做好危机处理预案，假如真的发现员工出现发热、咳嗽等症状，HR至少要知道接下来该怎么做，不至于手忙脚乱，延误疫情的紧急处理时间。|对于员工来说：|第一、接到公司提前复工的通知后，需要对当前的情况做一个综合判断。|结合自己的家庭和周围环境以及疫情发展情况综合得出结论。|假如你所在的城市疫情不严重，那么你完全可以在做好防护措施的情况下，前往公司上班。如果你所在城市为武汉，在现在这么严峻的形势下，你就完全可以考虑请假或者是辞职在家等待疫情不严重了再做打算。|毕竟生命安全，是最后的底线！|第二、员工复工，需要提高自我的疫情防护意识。|生命是自己的，在整个抗病毒的大环境下，员工对于自己的生命安全，需要更为重视。那就需要树立疫情防护意识，学习疫情防护知识，实践疫情防护方法。经常洗手、戴口罩等必须的防护措施，员工不管是在家里还是在公司，都是需要时刻谨记的。|第三、员工需要配合HR的工作。|疫情期间情况特殊，员工更要配合好HR的相关工作，比如真实汇报自己的身体状况，遇到任何困难及时和HR取得联系，做到信息沟通的及时准确完整。|针对提前复工的注意事项，HR和员工都是要时刻牢记“安全”两个字。', 0, 40);
-INSERT INTO `hot_topic` VALUES (2, '1A099883184B4FCEB18BD049CE82A5B1', '面试谈薪资遭遇HR压价，该坦然接受吗？', '这个涉及到契约精神和企业的价值观，我18年去某元证券去面试、复式，什么都谈好了，入职签合同时某元证券的负责人临时提出降薪，最后我没妥协，果断的放弃了，事实证明，后续那边的hr也离职了，还有一些人，所以一个企业的契约精神很重要，这是红线。', 2, 65);
+INSERT INTO `hot_topic` VALUES (1, 'ff84c118f2a8433d922dfbe45e7df8a8', '#疫情下劳动用工指南#公司提前复工，HR和员工该怎么办？', '疫情期间，公司的一举一动，最见一家公司的格局。在大多数公司都延迟复工的时候，也有不少的公司，仍然按照原来的计划复工，甚至在延长春节假期的政策出台后，要求提前复工。|有的人会觉得，公司的这种规定，实在让人寒心。当我们真正遇到的时候，辞职不去了吗？|毕竟除了涉及保障疫情防控地区、群众生活必要的、涉及国计民生的相关企业需要提前复工外，其他企业提前复工的是少之又少。如果真的需要提前复工，HR和员工，需要做好下面几点。|对于HR来说：|第一、务必和公司领导进行详细沟通。|最好结合当前国务院发布的延长春节假期政策，以及不遵守政策后可能带来的法律责任，需要对其进行详细解释。如果沟通完毕，领导们考虑到公司运营成本和生产成本，还是决定要提前复工，那么HR就要做好下一步通知到员工的准备。|第二、务必将此次公司提前复工的决定及时通知到员工个人，并做好相应的请假考勤制度。|考虑到有些员工可能会以请假来延长到岗时间，所以这部分的规定一定要和员工沟通好，避免未能及时保障员工权益。|第三、HR需要及时为复工期间的疫情防护做好准备。|像一些基本的防护物资，诸如消毒水、口罩、体温计等，都需要提前准备就绪。虽然现在对于口罩是否由公司来提供，存在不少的议论。但是出于疫情期间安全的考虑，公司准备口罩也是应该的，试想一下员工未带口罩感染疫情，那么HR心里会不会觉得这是自己的一次失误呢？疫情出现后是不是会给公司带来更大的损失呢？|虽然有部分网友觉得戴口罩是员工个人的事情，但是本着疫情防护优先原则，公司HR准备一些口罩，也是很有必要的。|第四、复工期间做好员工的身体检查工作。|比如每天分三次对员工的体温进行检测，及时登记备案。还要做好危机处理预案，假如真的发现员工出现发热、咳嗽等症状，HR至少要知道接下来该怎么做，不至于手忙脚乱，延误疫情的紧急处理时间。|对于员工来说：|第一、接到公司提前复工的通知后，需要对当前的情况做一个综合判断。|结合自己的家庭和周围环境以及疫情发展情况综合得出结论。|假如你所在的城市疫情不严重，那么你完全可以在做好防护措施的情况下，前往公司上班。如果你所在城市为武汉，在现在这么严峻的形势下，你就完全可以考虑请假或者是辞职在家等待疫情不严重了再做打算。|毕竟生命安全，是最后的底线！|第二、员工复工，需要提高自我的疫情防护意识。|生命是自己的，在整个抗病毒的大环境下，员工对于自己的生命安全，需要更为重视。那就需要树立疫情防护意识，学习疫情防护知识，实践疫情防护方法。经常洗手、戴口罩等必须的防护措施，员工不管是在家里还是在公司，都是需要时刻谨记的。|第三、员工需要配合HR的工作。|疫情期间情况特殊，员工更要配合好HR的相关工作，比如真实汇报自己的身体状况，遇到任何困难及时和HR取得联系，做到信息沟通的及时准确完整。|针对提前复工的注意事项，HR和员工都是要时刻牢记“安全”两个字。', 0, 41);
+INSERT INTO `hot_topic` VALUES (2, '1A099883184B4FCEB18BD049CE82A5B1', '面试谈薪资遭遇HR压价，该坦然接受吗？', '这个涉及到契约精神和企业的价值观，我18年去某元证券去面试、复式，什么都谈好了，入职签合同时某元证券的负责人临时提出降薪，最后我没妥协，果断的放弃了，事实证明，后续那边的hr也离职了，还有一些人，所以一个企业的契约精神很重要，这是红线。', 2, 67);
 INSERT INTO `hot_topic` VALUES (3, '1A099883184B4FCEB18BD049CE82A5B2', '疫情下公司经营困难，要坚持到最后吗？', '不坚持 这个时候就是可以看出一个公司企业文化，员工忠诚度的时候了，如果这个时候公司人离职就多，那大多数情况员工是不认可公司企业文化的，否则员工会陪公司渡过难关，毕竟这个应该一年内可以得到恢复', 1, 12);
 INSERT INTO `hot_topic` VALUES (4, 'DECA8ABAD21D45958AAA9B5ACFB15721', '#职场问答PK广场#欧洲股市全线暴跌，你的收入会受股市影响而减少吗？', '难过，亏大发了 跳楼，有一起的吗', 1, 6);
 INSERT INTO `hot_topic` VALUES (5, '1A099883184B4FCEB18BD049CE82A5B1', '你因为哪首歌爱上旅行团？【抽联名款围巾】', '以前还没听过这个乐队，特地跑去听了下哈。|曾经被别人感染成为了一个“名字”控。|《岛屿》这首歌她应该喜欢，普通事物的旧词新解。|人很奇怪，在特定情绪下读诗、听歌都会有特别的感悟，那些一瞬间读懂一个诗人，爱上一个乐队的时候，忸怩造作的情绪似乎有了一个切合点，一定都不容易吧。', 0, 0);
@@ -159,13 +159,25 @@ CREATE TABLE `invite_interview` (
   `status` int(3) DEFAULT NULL,
   `update_time` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of invite_interview
 -- ----------------------------
 BEGIN;
-INSERT INTO `invite_interview` VALUES (3, 'YQ2020031822065317137', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-18 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', '带上简历', 0, '1584540413720');
+INSERT INTO `invite_interview` VALUES (19, 'YQ2020031917423110247', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 's', 1, '1584610951861');
+INSERT INTO `invite_interview` VALUES (20, 'YQ2020031921433715473', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-05-19 11:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'dsd', 1, '1584625417573');
+INSERT INTO `invite_interview` VALUES (21, 'YQ2020031921464419086', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 10:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'ds', 1, '1584625604074');
+INSERT INTO `invite_interview` VALUES (22, 'YQ2020031922011212053', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'ds', 1, '1584626472053');
+INSERT INTO `invite_interview` VALUES (23, 'YQ2020031922073310029', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'dsd', 1, '1584626853694');
+INSERT INTO `invite_interview` VALUES (24, 'YQ2020031922183913352', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', '颠三倒四', 1, '1584627519864');
+INSERT INTO `invite_interview` VALUES (25, 'YQ2020031922301312104', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'dsds', 1, '1584628213454');
+INSERT INTO `invite_interview` VALUES (26, 'YQ2020031922331815685', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', '带上', 1, '1584628398700');
+INSERT INTO `invite_interview` VALUES (27, 'YQ2020031922385110505', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'h', 0, '1584628731509');
+INSERT INTO `invite_interview` VALUES (28, 'YQ2020031922412219580', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'sa', 1, '1584628882014');
+INSERT INTO `invite_interview` VALUES (29, 'YQ2020031922550118825', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-05-19 10:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'a', 2, '1584629701573');
+INSERT INTO `invite_interview` VALUES (30, 'YQ2020031922575716514', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-04-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'DS', 1, '1584629877585');
+INSERT INTO `invite_interview` VALUES (31, 'YQ2020031922581911284', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-19 09:00', '福建探极贸易有限公司', '前端开发', '丰泽', 'DDSDS', 2, '1584629899122');
 COMMIT;
 
 -- ----------------------------
@@ -296,7 +308,7 @@ CREATE TABLE `topic_attention` (
   `question_idx` int(10) DEFAULT NULL,
   `unionid` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of topic_attention
@@ -304,6 +316,7 @@ CREATE TABLE `topic_attention` (
 BEGIN;
 INSERT INTO `topic_attention` VALUES (1, '1A099883184B4FCEB18BD049CE82A5B1', 2, 'onmaV07KFbndEt5JwBXCuIlc-cvo');
 INSERT INTO `topic_attention` VALUES (2, '1A099883184B4FCEB18BD049CE82A5B2', 3, 'onmaV07KFbndEt5JwBXCuIlc-cvo');
+INSERT INTO `topic_attention` VALUES (3, '1A099883184B4FCEB18BD049CE82A5B1', 2, 'onmaV0zqVcbRWLuWPylTFqpgbYk8');
 COMMIT;
 
 -- ----------------------------
