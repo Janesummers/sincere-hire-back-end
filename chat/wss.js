@@ -31,6 +31,9 @@ function runServer () {
         if (msg === '系统：[同意面试邀请]' && type === 'allowInvite') {
           msg = '对方已同意您的面试邀请';
         }
+        if (msg === '系统：[拒绝面试邀请]' && type === 'refuseInvite') {
+          msg = '对方拒绝了您的面试邀请';
+        }
         let filename = message.save(msg, client, to, time, type, read, invite_id);
         let data2 = fs.readFileSync(filename, 'utf8');
         to = Base64.decode(to);
@@ -47,7 +50,8 @@ function runServer () {
               msg,
               all: data2.toString(),
               sendUser: name,
-              type
+              type,
+              invite_id
             };
             messages = JSON.stringify(messages);
             client.send(messages);

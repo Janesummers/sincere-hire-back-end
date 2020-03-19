@@ -201,7 +201,32 @@ let getOnceInvite = (req, resp) => {
 }
 
 let updateInvite = (req, resp) => {
-  
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
+
+  console.log('用户请求：getOnceInvite');
+
+  let {
+    id,
+    status
+  } = req.query;
+
+  mysqlOpt.exec(
+    `update invite_interview
+     set status = ? where invite_id = ?`,
+    mysqlOpt.formatParams(status, id),
+    (res) => {
+      resp.json(msgResult.msg('ok'));
+      return;
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error('更新面试邀请状态失败'));
+    }
+  );
 }
 
 module.exports = {

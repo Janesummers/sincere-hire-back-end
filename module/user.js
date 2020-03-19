@@ -656,7 +656,7 @@ let getUserResume = (req, resp) => {
     let resume = {};
     resume.edu = res[0];
     resume.work = res[1];
-    resume.adv = res[2].advantage || '';
+    resume.adv = res[2][0].advantage || '';
     resp.json(msgResult.msg(resume));
   }).catch(err => {
     console.log(err);
