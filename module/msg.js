@@ -134,7 +134,7 @@ var saveMessageList = (req, resp) => {
   function insertTarget() {
     mysqlOpt.exec(
       `insert into message (ascription_id, target_id, target_name, target_company, job_id)
-       values (?,?,?,?)`,
+       values (?,?,?,?,?)`,
       mysqlOpt.formatParams(id, unionid, commit_name, company, job_id),
       (res) => {
         resp.json(msgResult.msg('ok'));

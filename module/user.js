@@ -166,7 +166,7 @@ var saveRecruiter = (req, resp) => {
       mysqlOpt.formatParams(company_id, company, scale, type),
       (res) => {
         resp.json(msgResult.msg({
-          name, sex, email, position, company_id, scale, rule, major, school
+          name, sex, email, position, company_id, scale, rule
         }));
       },
       e => {
