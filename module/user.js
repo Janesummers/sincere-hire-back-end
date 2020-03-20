@@ -686,7 +686,28 @@ let getUserResume = (req, resp) => {
 
 }
 
+let getAvar = (req, resp) => {
+  let unionid = req.query.unionid;
+  if (!unionid || unionid.length != 28) {
+    resp.json(msgResult.error("参数非法"));
+    return;
+  }
 
+  console.log('用户请求：getAvar')
+  let id = req.query.id;
+
+  mysqlOpt.exec(
+    `select unionid, avatarUrl from user where unionid = ? or unionid = ?`,
+    mysqlOpt.formatParams(id, unionid),
+    (res) => {
+      resp.json(msgResult.msg(res));
+    },
+    e => {
+      console.log(msgResult.error(e.message));
+      resp.json(msgResult.error("获取双方头像错误"));
+    }
+  );
+}
 
 
 
@@ -708,5 +729,6 @@ module.exports = {
   delWorkExperience,
   delEducation,
   changeEducation,
-  getUserResume
+  getUserResume,
+  getAvar
 };

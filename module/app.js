@@ -104,6 +104,10 @@ app.get('/getUserResume', (req, resp) => {
   user.getUserResume(req, resp);
 })
 
+app.get('/getAvar', (req, resp) => {
+  user.getAvar(req, resp);
+})
+
 const openData = require('./openData');
 
 app.get("/getCity", (req, resp) => {
