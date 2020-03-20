@@ -11,7 +11,7 @@
  Target Server Version : 50728
  File Encoding         : 65001
 
- Date: 20/03/2020 12:03:55
+ Date: 20/03/2020 15:36:56
 */
 
 SET NAMES utf8mb4;
@@ -26,7 +26,7 @@ CREATE TABLE `collect` (
   `unionid` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
   `job_id` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`) USING BTREE
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of collect
@@ -35,6 +35,7 @@ BEGIN;
 INSERT INTO `collect` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC120019970J00082678411');
 INSERT INTO `collect` VALUES (11, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', 'CC000405335J00357872406');
 INSERT INTO `collect` VALUES (25, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC000405335J00357872406');
+INSERT INTO `collect` VALUES (26, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'CC120019970J00082678411');
 COMMIT;
 
 -- ----------------------------
@@ -71,7 +72,7 @@ INSERT INTO `company` VALUES ('CZ688029030', '深圳云译科技有限公司', '
 INSERT INTO `company` VALUES ('CZ701516780', '掌门1对1教学部（中国）', '10000人以上', '民营');
 INSERT INTO `company` VALUES ('CZ815413650', '厦门贝壳闹海房地产经纪有限公司', '10000人以上', '民营');
 INSERT INTO `company` VALUES ('CZ824417960', '君泉资产管理有限公司', '20人以下', '民营');
-INSERT INTO `company` VALUES ('QZ158467557', '福建探极贸易有限公司', '少于15人', '民营');
+INSERT INTO `company` VALUES ('QZ158468912', '福建探极贸易有限公司', '少于15人', '民营');
 COMMIT;
 
 -- ----------------------------
@@ -93,9 +94,9 @@ CREATE TABLE `hot_topic` (
 -- ----------------------------
 BEGIN;
 INSERT INTO `hot_topic` VALUES (1, 'ff84c118f2a8433d922dfbe45e7df8a8', '#疫情下劳动用工指南#公司提前复工，HR和员工该怎么办？', '疫情期间，公司的一举一动，最见一家公司的格局。在大多数公司都延迟复工的时候，也有不少的公司，仍然按照原来的计划复工，甚至在延长春节假期的政策出台后，要求提前复工。|有的人会觉得，公司的这种规定，实在让人寒心。当我们真正遇到的时候，辞职不去了吗？|毕竟除了涉及保障疫情防控地区、群众生活必要的、涉及国计民生的相关企业需要提前复工外，其他企业提前复工的是少之又少。如果真的需要提前复工，HR和员工，需要做好下面几点。|对于HR来说：|第一、务必和公司领导进行详细沟通。|最好结合当前国务院发布的延长春节假期政策，以及不遵守政策后可能带来的法律责任，需要对其进行详细解释。如果沟通完毕，领导们考虑到公司运营成本和生产成本，还是决定要提前复工，那么HR就要做好下一步通知到员工的准备。|第二、务必将此次公司提前复工的决定及时通知到员工个人，并做好相应的请假考勤制度。|考虑到有些员工可能会以请假来延长到岗时间，所以这部分的规定一定要和员工沟通好，避免未能及时保障员工权益。|第三、HR需要及时为复工期间的疫情防护做好准备。|像一些基本的防护物资，诸如消毒水、口罩、体温计等，都需要提前准备就绪。虽然现在对于口罩是否由公司来提供，存在不少的议论。但是出于疫情期间安全的考虑，公司准备口罩也是应该的，试想一下员工未带口罩感染疫情，那么HR心里会不会觉得这是自己的一次失误呢？疫情出现后是不是会给公司带来更大的损失呢？|虽然有部分网友觉得戴口罩是员工个人的事情，但是本着疫情防护优先原则，公司HR准备一些口罩，也是很有必要的。|第四、复工期间做好员工的身体检查工作。|比如每天分三次对员工的体温进行检测，及时登记备案。还要做好危机处理预案，假如真的发现员工出现发热、咳嗽等症状，HR至少要知道接下来该怎么做，不至于手忙脚乱，延误疫情的紧急处理时间。|对于员工来说：|第一、接到公司提前复工的通知后，需要对当前的情况做一个综合判断。|结合自己的家庭和周围环境以及疫情发展情况综合得出结论。|假如你所在的城市疫情不严重，那么你完全可以在做好防护措施的情况下，前往公司上班。如果你所在城市为武汉，在现在这么严峻的形势下，你就完全可以考虑请假或者是辞职在家等待疫情不严重了再做打算。|毕竟生命安全，是最后的底线！|第二、员工复工，需要提高自我的疫情防护意识。|生命是自己的，在整个抗病毒的大环境下，员工对于自己的生命安全，需要更为重视。那就需要树立疫情防护意识，学习疫情防护知识，实践疫情防护方法。经常洗手、戴口罩等必须的防护措施，员工不管是在家里还是在公司，都是需要时刻谨记的。|第三、员工需要配合HR的工作。|疫情期间情况特殊，员工更要配合好HR的相关工作，比如真实汇报自己的身体状况，遇到任何困难及时和HR取得联系，做到信息沟通的及时准确完整。|针对提前复工的注意事项，HR和员工都是要时刻牢记“安全”两个字。', 0, 3);
-INSERT INTO `hot_topic` VALUES (2, '1A099883184B4FCEB18BD049CE82A5B1', '面试谈薪资遭遇HR压价，该坦然接受吗？', '这个涉及到契约精神和企业的价值观，我18年去某元证券去面试、复式，什么都谈好了，入职签合同时某元证券的负责人临时提出降薪，最后我没妥协，果断的放弃了，事实证明，后续那边的hr也离职了，还有一些人，所以一个企业的契约精神很重要，这是红线。', 1, 11);
-INSERT INTO `hot_topic` VALUES (3, '1A099883184B4FCEB18BD049CE82A5B2', '疫情下公司经营困难，要坚持到最后吗？', '不坚持 这个时候就是可以看出一个公司企业文化，员工忠诚度的时候了，如果这个时候公司人离职就多，那大多数情况员工是不认可公司企业文化的，否则员工会陪公司渡过难关，毕竟这个应该一年内可以得到恢复', 1, 3);
-INSERT INTO `hot_topic` VALUES (4, 'DECA8ABAD21D45958AAA9B5ACFB15721', '#职场问答PK广场#欧洲股市全线暴跌，你的收入会受股市影响而减少吗？', '难过，亏大发了 跳楼，有一起的吗', 1, 3);
+INSERT INTO `hot_topic` VALUES (2, '1A099883184B4FCEB18BD049CE82A5B1', '面试谈薪资遭遇HR压价，该坦然接受吗？', '这个涉及到契约精神和企业的价值观，我18年去某元证券去面试、复式，什么都谈好了，入职签合同时某元证券的负责人临时提出降薪，最后我没妥协，果断的放弃了，事实证明，后续那边的hr也离职了，还有一些人，所以一个企业的契约精神很重要，这是红线。', 0, 13);
+INSERT INTO `hot_topic` VALUES (3, '1A099883184B4FCEB18BD049CE82A5B2', '疫情下公司经营困难，要坚持到最后吗？', '不坚持 这个时候就是可以看出一个公司企业文化，员工忠诚度的时候了，如果这个时候公司人离职就多，那大多数情况员工是不认可公司企业文化的，否则员工会陪公司渡过难关，毕竟这个应该一年内可以得到恢复', 0, 3);
+INSERT INTO `hot_topic` VALUES (4, 'DECA8ABAD21D45958AAA9B5ACFB15721', '#职场问答PK广场#欧洲股市全线暴跌，你的收入会受股市影响而减少吗？', '难过，亏大发了 跳楼，有一起的吗', 0, 3);
 INSERT INTO `hot_topic` VALUES (5, '1A099883184B4FCEB18BD049CE82A5B1', '你因为哪首歌爱上旅行团？【抽联名款围巾】', '以前还没听过这个乐队，特地跑去听了下哈。|曾经被别人感染成为了一个“名字”控。|《岛屿》这首歌她应该喜欢，普通事物的旧词新解。|人很奇怪，在特定情绪下读诗、听歌都会有特别的感悟，那些一瞬间读懂一个诗人，爱上一个乐队的时候，忸怩造作的情绪似乎有了一个切合点，一定都不容易吧。', 0, 0);
 INSERT INTO `hot_topic` VALUES (6, '1A099883184B4FCEB18BD049CE82A5B2', '疫情结束后，会爆发求职狂潮吗？', '会。|1.年前已经离职的，早就在摩拳擦掌了，本想在年后找份工作，碰到疫情，疫情过了这些没有工作的会更迫切需要一份工作；|2.目前虽然还在值，中小企业遭受重创，会从福利待遇上节流，对于员工来说，还是更愿意去找没有受影响的，这部分人会选择跳槽；|3.还有一大批应届生，准备蜂拥而至。|妈呀，压力好大～', 0, 0);
 INSERT INTO `hot_topic` VALUES (7, '1A099883184B4FCEB18BD049CE82A5B3', '视频面试需要注意什么？', '参加过两次视频面试，和普通面试比起来需要多注意一下网络环境，保证高质量的网络。第二就自身所在环境整洁，噪音小。第三就是可以临时改变一下昵称和头像之类的app信息，实名正装照可能比较好。第四就是回答问题时候要等面试官的问题提出完整后再作答，不要因为网络延迟等原因抢话。其他的还比较好，甚至可以准备一些资料在手边，面试的时候可以搂两眼。', 0, 0);
@@ -159,14 +160,7 @@ CREATE TABLE `invite_interview` (
   `status` int(3) DEFAULT NULL,
   `update_time` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of invite_interview
--- ----------------------------
-BEGIN;
-INSERT INTO `invite_interview` VALUES (32, 'YQ2020032011443814234', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '2020-03-20 11:00', '福建探极贸易有限公司', '前端开发', '福建', '带上作品', 1, '1584675878182');
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for jobs
@@ -201,7 +195,7 @@ BEGIN;
 INSERT INTO `jobs` VALUES ('CC000405335J00357872406', 'CZ000405330', '前端开发工程师（应届或优秀实习生）(1名）', '软件/互联网开发/系统集成', '全职', '不限', '五险一金|定期体检|高温补贴|带薪年假|节日福利', '五险一金|定期体检|高温补贴|带薪年假|节日福利', '厦门', '厦门-湖里区', '4K-6K', 'Css|Javascript|html|C语言开发|VUE', '岗位名称 前端开发工程师（应届或优秀实习生）(1名）|岗位职责|1. 负责web 页面开发，小程序开发，公众号开发|岗位要求|1. 熟悉html/css/javascript，c语言开发|2. 计算机相关专业毕业|3. 英语四级以上|4. 掌握数据结构，操作系统，数据库等基础知识|5. 对web开发有浓厚兴趣，了解vue框架', '五缘湾恒安国际中心', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2019-11-13 11:24:25');
 INSERT INTO `jobs` VALUES ('CC120019970J00082678411', 'CZ442788430', 'RPO招聘顾问实习生', '实习生/培训生/储备干部', '实习', '无经验', '弹性工作|节日福利|周末双休', '弹性工作|节日福利|周末双休', '厦门', '厦门', '2K-2.5K', NULL, '工作内容： |1、分析招聘需求、搜寻简历、筛选简历、电话沟通、面试跟进与反馈，协助谈薪，跟进入职 |2、总结招聘过程中的数据，分析改进执行技巧。 |任职要求：|1、2020年应届生，统招本科，人力资源相关专业或具备电销经验优先； |2、暑假全职实习并且大四每周能至少保证3天；', '思明区七星西路178号起兴大厦901室', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-07 10:46:02');
 INSERT INTO `jobs` VALUES ('CC120019970J90289423000', 'CZ120019970', '运营实习生', '实习生/培训生/储备干部', '实习', '无经验', '节日福利', '节日福利', '厦门', '厦门', '2K-4K', '数据分析|办公表格', '岗位职责：|1、负责业务数据（产品销售数据、销售KPI数据）的收集、整理及分析工作定期输出数据分析报表；|2、运用数据分析手段，为产品运营、人员绩效的优化提供数据支持；|3、优化数据统计指标体系，运营系统流程梳理、数据规范。|任职要求：|1、本科及以上学历，数学、数据统计专业优先；|2、沟通及学习适应能力强，责任心强，能承受一定的工作压力；|3、熟练使用Excel，熟悉数据库应用，熟练编写运营数据分析报告；|4、2020届应届生。|工作时间：|周一至周五朝9晚6，周末双休', '七星西路178号七星大厦901室', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-10 17:20:00');
-INSERT INTO `jobs` VALUES ('CC158467569800020200320', 'QZ158467557', '前端开发', '软件', '全职', '不限', '五险一金', '五险一金', '北京', '北京-东城区', '3k-4k', 'Javascript|Css', '工作职责：|撒大声地', '福建', '3', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-03-20 11:41:38');
+INSERT INTO `jobs` VALUES ('CC158468917400020200320', 'QZ158468912', '前端', '软件/互联网开发', '全职', '不限', '五险一金|定期体检', '五险一金|定期体检', '北京', '北京-东城区', '4k-6k', 'Css|Javascript|java', '需要。。。|。。。', '福建', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-03-20 15:26:14');
 INSERT INTO `jobs` VALUES ('CC301785724J00434168705', 'CZ442788430', 'C#/.Net开发实习生', '软件/互联网开发/系统集成', '实习', '无经验', '五险一金|年底双薪|加班补助|带薪年假|补充医疗保险', '五险一金|年底双薪|加班补助|带薪年假|补充医疗保险|定期体检|节日福利|弹性工作', '厦门', '厦门', '3K-6K', '数据库|MySQL|WINFORM|ASP|C#/.NET', '岗位职责：|1、 此岗位为C#/.Net实习生，未来可往服务器后端(.Net Core)、iOS(Xamarin.iOS)、Android(Xamarin.Android)、Mac(Xamarin.Mac)、Windows(.Net Framework)方向发展；|2、 负责根据产品模块设计，编码实现各模块功能；|3、 对公司产品未来可能需要采用的技术进行调研、预演。|任职要求：|1、计算机、软件工程相关专业，本科以上学历，基础知识扎实，可以长期实习，毕业后可直接转正；|2、熟练掌握.Net核心库的使用，了解.Net的运行机制；|3、熟悉至少一种主流数据库，如：SQL Server、MySQL、SQLite等；|4、良好的沟通与表达能力、逻辑思维清晰、较强的动手能力；|5、有进取心、求知欲强烈、对工作充满热情。', '厦门市软件园二期望海路10号楼之三3F', '1', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:54:44');
 INSERT INTO `jobs` VALUES ('CC301785724J00441028105', 'CZ442788430', '服务端开发实习生', '软件/互联网开发/系统集成', '校园', '无经验', '五险一金|年底双薪|绩效奖金|补充医疗保险|定期体检', '五险一金|年底双薪|绩效奖金|补充医疗保险|定期体检|员工旅游|带薪年假|弹性工作', '厦门', '厦门', '4K-8K', '.NET|C#|HTML/CSS|MySQL|JS|ASP', '岗位职责：|1、参与iOS/Android应用及前端站点的接口维护；|2、开发各产品业务对应的管理后台；|3、数据的收集、统计与分析。|任职要求：|1、计算机及相关专业本科以上学历；|2、熟悉JS、HTML、CSS等网页制作技术；|3、熟悉ADO.NET，熟悉SQL语言，对关系型数据库有较好理解；|4、良好的沟通与表达能力、思维逻辑清晰，较强的动手能力；|5、有进取心、求知欲强烈、对工作充满热情。|6、能熟练阅读英文技术文档。', '厦门市软件园二期望海路10号楼之三3F', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:54:11');
 INSERT INTO `jobs` VALUES ('CC301785724J00441159205', 'CZ442788430', 'Android开发实习生', '软件/互联网开发/系统集成', '校园', '无经验', '五险一金|年底双薪|绩效奖金|带薪年假|补充医疗保险', '五险一金|年底双薪|绩效奖金|带薪年假|补充医疗保险|定期体检|节日福利|弹性工作', '厦门', '厦门', '4K-6K', 'AndroidSDK|java|AndroidNDK|androidframework|AndroidStudio|AndroidUI', '岗位职责：|1、负责Android手机应用设计开发；|2、负责Android程序的维护以及改进。|任职要求：|1、计算机及相关专业本科以上学历；|2、基础知识扎实，熟悉常用数据结构与算法知识；|3、熟悉 Java、Android SDK，gradle用法；|4、具有丰富的实际代码编写经验和Android开发经验；|5、熟悉Android界面开发和性能调优；|6、有良好的学习沟通能力，富有团队精神，能承受压力。', '软件园二期望海路10号之三3F', '2', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '本科', '2020-02-17 14:52:48');
@@ -242,7 +236,7 @@ CREATE TABLE `message` (
   `target_company` varchar(60) COLLATE utf8_unicode_ci DEFAULT NULL,
   `job_id` varchar(100) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=43 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=49 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of message
@@ -258,8 +252,8 @@ INSERT INTO `message` VALUES (26, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'onmaV07KFbndE
 INSERT INTO `message` VALUES (27, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '测试号', '福建探极贸易有限公司', 'CC158417038800020200314');
 INSERT INTO `message` VALUES (28, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', '');
 INSERT INTO `message` VALUES (29, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '陈仁忠', '福建探极贸易有限公司', 'CC158417038800020200314');
-INSERT INTO `message` VALUES (41, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', NULL);
-INSERT INTO `message` VALUES (42, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', '福建探极贸易有限公司', 'CC158467569800020200320');
+INSERT INTO `message` VALUES (47, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'onmaV07KFbndEt5JwBXCuIlc-cvo', '陈立权', '福建探极贸易有限公司', NULL);
+INSERT INTO `message` VALUES (48, 'onmaV07KFbndEt5JwBXCuIlc-cvo', 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '简夏', '福建探极贸易有限公司', 'CC158468917400020200320');
 COMMIT;
 
 -- ----------------------------
@@ -274,16 +268,7 @@ CREATE TABLE `topic_answer` (
   `content` varchar(400) COLLATE utf8_unicode_ci DEFAULT NULL,
   `time` varchar(15) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of topic_answer
--- ----------------------------
-BEGIN;
-INSERT INTO `topic_answer` VALUES (9, '1A099883184B4FCEB18BD049CE82A5B1', 2, 'onmaV07KFbndEt5JwBXCuIlc-cvo', '不接受', '1584675968882');
-INSERT INTO `topic_answer` VALUES (10, '1A099883184B4FCEB18BD049CE82A5B2', 3, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '会把', '1584676361546');
-INSERT INTO `topic_answer` VALUES (11, 'DECA8ABAD21D45958AAA9B5ACFB15721', 4, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '可能', '1584676388784');
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for topic_attention
@@ -295,14 +280,7 @@ CREATE TABLE `topic_attention` (
   `question_idx` int(10) DEFAULT NULL,
   `unionid` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of topic_attention
--- ----------------------------
-BEGIN;
-INSERT INTO `topic_attention` VALUES (5, '1A099883184B4FCEB18BD049CE82A5B2', 3, 'onmaV07KFbndEt5JwBXCuIlc-cvo');
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Table structure for user
@@ -333,10 +311,10 @@ BEGIN;
 INSERT INTO `user` VALUES ('onmaV00rq5azWGwsxYXQ22qEsoIw', 'o3yoo45YJZeCkrUcXqvrQR9-TqdU', '帅', 'b25tYVYwMHJxNWF6V0d3c3hZWFEyMnFFc29Jdw==1582817612605.png', '2004.01', '男', '8888@555.88', '北京市', '学生', '帅就完了', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV01V1-d0ffgOXDsxLPYrIC1g', 'o3yoo4zuVdcYRWwO-3qRjFkmKHrU', '小杜', NULL, '1996.12', '女', '709528701@qq.com', '南平市', '学生', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV05nWr8oOiGG9dlVN0zcLmMc', 'o3yoo4wnz7oNxJyse9xJzhuBATac', '陈仁忠', 'b25tYVYwNW5XcjhvT2lHRzlkbFZOMHpjTG1NYw==1582897537566.png', '1996.08', '男', '171138739@qq.com', '莆田市', '学生', '很帅', '无工作经验', NULL, NULL, 0);
-INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1584675544532.png', NULL, '男', '1752321720@qq.com', NULL, NULL, NULL, NULL, '经理', 'QZ158467557', 1);
+INSERT INTO `user` VALUES ('onmaV07KFbndEt5JwBXCuIlc-cvo', 'o3yoo42AkF6cJkr1V_gi1mSIXA-s', '陈立权2', 'b25tYVYwN0tGYm5kRXQ1SndCWEN1SWxjLWN2bw==1584689094330.png', 'null', '男', '1752321720@qq.com', 'null', NULL, NULL, 'null', '经理', 'QZ158468912', 1);
 INSERT INTO `user` VALUES ('onmaV09z1tYeenqhrhxU7ydeDC1A', 'o3yoo42saxOs9w6wMClhJQFpRzfE', '蓝雪芳', NULL, '1996.07', '女', '1901650964@qq.com', '福州市', '职场人士', '', '无工作经验', NULL, NULL, 0);
 INSERT INTO `user` VALUES ('onmaV0yhcmiMqjST3Du0iH7oMZ4g', 'o3yoo4_NU-2AR3gjxUaHIkMB_azo', '测试号', NULL, '2004.01', '男', '1752321720@qq.com', '北京市', '学生', '', '无工作经验', NULL, NULL, 0);
-INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1584675583231.png', '1999.01', '男', '2287944282@qq.com', '福州市', '学生', '还好', '2020.01', NULL, NULL, 0);
+INSERT INTO `user` VALUES ('onmaV0zqVcbRWLuWPylTFqpgbYk8', 'o3yoo43mZhwcmPfpMlIcrJTPJtZg', '简夏2', 'b25tYVYwenFWY2JSV0x1V1B5bFRGcXBnYllrOA==1584689046860.png', '1999.01', '男', '2287944282@qq.com', '北京市', '学生', '', '2019.01', NULL, NULL, 0);
 COMMIT;
 
 -- ----------------------------
@@ -352,7 +330,7 @@ CREATE TABLE `user_education` (
   `time_enrollment` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `time_graduation` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- ----------------------------
 -- Records of user_education
@@ -363,7 +341,7 @@ INSERT INTO `user_education` VALUES (10, 'onmaV01V1-d0ffgOXDsxLPYrIC1g', '闽江
 INSERT INTO `user_education` VALUES (11, 'onmaV05nWr8oOiGG9dlVN0zcLmMc', '闽江学院', '软件工程', '本科', '2018.09', '2020.06');
 INSERT INTO `user_education` VALUES (12, 'onmaV0yhcmiMqjST3Du0iH7oMZ4g', '闽江学院', '软件工程', '本科', '2020.01', '2021.01');
 INSERT INTO `user_education` VALUES (14, 'onmaV00rq5azWGwsxYXQ22qEsoIw', '来来来', '教授', '博士', '2020.01', '2020.12');
-INSERT INTO `user_education` VALUES (23, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '闽江学院', '软件工程', '本科', '2018.09', '2020.07');
+INSERT INTO `user_education` VALUES (27, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', '闽江学院', '软件工程', '本科', '2016.01', '2020.01');
 COMMIT;
 
 -- ----------------------------
@@ -381,13 +359,6 @@ CREATE TABLE `work_experience` (
   `salary` int(10) NOT NULL,
   `job_description` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
-
--- ----------------------------
--- Records of work_experience
--- ----------------------------
-BEGIN;
-INSERT INTO `work_experience` VALUES (2, 'onmaV0zqVcbRWLuWPylTFqpgbYk8', 'km', '前端', '2017.01', '2019.01', '移动互联网', 3000, '完成。。。');
-COMMIT;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 SET FOREIGN_KEY_CHECKS = 1;
