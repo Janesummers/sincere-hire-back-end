@@ -30,13 +30,34 @@ var login = (req, resp) => {
         
         function getUser () {
           mysqlOpt.exec(
-            `select u.*, edu.school, edu.major
-             from user as u, user_education as edu
-             where u.openId = ? and u.unionid = edu.unionid limit 1`,
+            `select *
+             from user
+             where openId = ?`,
             mysqlOpt.formatParams(code2Session.openid || id),
             (res) => {
               if (res.length > 0) {
-                resp.json(msgResult.msg(res));
+                if (res[0].rule == 0) {
+                  
+                  mysqlOpt.exec(
+                    `select u.*, edu.school, edu.major
+                     from user as u, user_education as edu
+                     where u.openId = ? and u.unionid = edu.unionid limit 1`,
+                    mysqlOpt.formatParams(code2Session.openid || id),
+                    (res2) => {
+                      if (res2.length > 0) {
+                        resp.json(msgResult.msg(res2));
+                      }
+                      return;
+                    },
+                    e => {
+                      console.log(msgResult.error(e.message));
+                      resp.json(msgResult.error(e.message));
+                    }
+                  );
+
+                } else {
+                  resp.json(msgResult.msg(res));
+                }
               } else {
                 getId();
               }
