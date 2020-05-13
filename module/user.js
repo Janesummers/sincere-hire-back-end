@@ -237,7 +237,6 @@ var userAvatarUrl = (req, resp) => {
           resp.json(msgResult.error("上传失败"));
         }
       );
-      
     }
   });
   
@@ -670,7 +669,23 @@ let getUserResume = (req, resp) => {
     );  
   });
 
-  let allDone = Promise.all([getUserEdu, getUserWork, getUserAdv]);
+  let getUserInfo = new Promise((resolve, reject) => {
+    mysqlOpt.exec(
+      `select nickname,birthday,sex,email from user
+       where unionid = ?`,
+      mysqlOpt.formatParams(query.uid),
+      (res) => {
+        let data = JSON.parse(JSON.stringify(res));
+        resolve(data);
+      },
+      e => {
+        console.log(msgResult.error(e.message));
+        reject(e.message);
+      }
+    );  
+  });
+
+  let allDone = Promise.all([getUserEdu, getUserWork, getUserAdv, getUserInfo]);
   
   allDone.then(res => {
     console.log(res)
@@ -678,6 +693,7 @@ let getUserResume = (req, resp) => {
     resume.edu = res[0];
     resume.work = res[1];
     resume.adv = res[2][0].advantage || '';
+    resume.userInfo = res[3];
     resp.json(msgResult.msg(resume));
   }).catch(err => {
     console.log(err);

@@ -13,18 +13,6 @@ var getMessageList = (req, resp) => {
   }
   let unionid = Base64.decode(params.id);
 
-  // let sql = '';
-
-  // if (params.rule != 'job_seeker') {
-  //   sql = `select u.*, comp.company_name  
-  //   from user as u, company as comp
-  //   where (u.company_id = comp.company_id) and u.unionid <> ?`
-  // } else {
-  //   sql = `select *
-  //   from user
-  //   where unionid <> ?`
-  // }
-
   mysqlOpt.exec(
     `select msg.*, u.avatarUrl
     from message as msg, user as u
@@ -51,28 +39,32 @@ var getMessage = (req, resp) => {
 
   let filePath = path.join(__dirname, '../static/chats')
 
-  const dir = fs.readdirSync(filePath, {
-    encoding: 'utf8'
-  })
+  try {
+    const dir = fs.readdirSync(filePath, {
+      encoding: 'utf8'
+    })
+    let msgs = {};
 
-  let msgs = {};
+    let len = 0;
 
-  let len = 0;
+    let reg = RegExp(`(_?)${id}(_?)`)
 
-  let reg = RegExp(`(_?)${id}(_?)`)
+    dir.forEach(item => {
+      if (item.includes(id)) {
+        console.log(item)
+        len += 1;
+        let key = item.replace(reg, '').match(/.+(?=.json)/)[0];
+        let data = fs.readFileSync(`${filePath}/${item}`, {encoding: 'utf8'});
+        msgs[key] = JSON.parse(`[${data}]`);
+      }
+    })
 
-  dir.forEach(item => {
-    if (item.includes(id)) {
-      len += 1;
-      let key = item.replace(reg, '').match(/.+(?=.json)/)[0];
-      let data = fs.readFileSync(`${filePath}/${item}`, {encoding: 'utf8'});
-      msgs[key] = JSON.parse(`[${data}]`);
+    if (len > 0) {
+      resp.json(msgResult.msg([msgs]));
+    } else {
+      resp.json(msgResult.msg([]));
     }
-  })
-
-  if (len > 0) {
-    resp.json(msgResult.msg([msgs]));
-  } else {
+  } catch (e) {
     resp.json(msgResult.msg([]));
   }
 
