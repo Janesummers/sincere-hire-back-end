@@ -34,16 +34,16 @@ function runServer () {
         if (msg === '系统：[拒绝面试邀请]' && type === 'refuseInvite') {
           msg = '对方拒绝了您的面试邀请';
         }
-        let filename = message.save(msg, client, to, time, type, read, invite_id);
+        let filename = message.save(msg, client, to, time, type, read, invite_id); // 写入消息记录
         let data2 = fs.readFileSync(filename, 'utf8');
         to = Base64.decode(to);
         client = Base64.decode(client);
         if (msg === '[面试邀请]' && type === 'sendInvite') {
-          console.log(other)
+          // console.log(other)
           message.invitation(client, to, time, invite_id, other)
         }
         console.log('收到消息', msg, '来自：', client, '发送给：', to);
-        //data是客户端发送的消息，这里clients.foreach是广播给所有客户端
+        //将客户端发送的消息广播给接收方客户端
         wss.clients.forEach((client) => {
           if (client.unionid === to) {
             let messages = {

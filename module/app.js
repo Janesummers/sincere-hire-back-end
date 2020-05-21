@@ -39,115 +39,170 @@ const user = require('./user');
 app.post("/login", (req, resp) => {
   user.login(req, resp);
 });
-
+/**
+ * 保存求职者信息
+ */
 app.post("/saveJobSeeker", (req, resp) => {
   user.saveJobSeeker(req, resp);
 });
-
+/**
+ * 保存招聘者信息
+ */
 app.post("/saveRecruiter", (req, resp) => {
   user.saveRecruiter(req, resp);
 });
-
+/**
+ * 上传用户头像
+ */
 app.post("/userAvatarUrl", upload.single('file'), (req, resp) => {
   user.userAvatarUrl(req, resp);
 });
-
+/**
+ * 获取头像
+ */
 app.get("/userAvatar/:name", (req, resp) => {
   user.userAvatar(req, resp);
 });
-
+/**
+ * 保存用户基础信息
+ */
 app.post("/saveUserInfo", (req, resp) => {
   user.saveUserInfo(req, resp);
 })
-
+/**
+ * 获取教育经历
+ */
 app.get('/getUserEducation', (req, resp) => {
   user.getUserEducation(req, resp);
 })
-
+/**
+ * 新增教育经历
+ */
 app.post('/addEducation', (req, resp) => {
   user.addEducation(req, resp);
 })
-
+/**
+ * 更改教育经历
+ */
 app.post('/changeEducation', (req, resp) => {
   user.changeEducation(req, resp);
 })
-
+/**
+ * 删除教育经历
+ */
 app.post('/delEducation', (req, resp) => {
   user.delEducation(req, resp);
 })
-
+/**
+ * 获取用户基础信息
+ */
 app.get('/getUserInfo', (req, resp) => {
   user.getUserInfo(req, resp);
 })
-
+/**
+ * 添加工作经历
+ */
 app.post('/addWorkExperience', (req, resp) => {
   user.addWorkExperience(req, resp);
 })
-
+/**
+ * 更改工作经历
+ */
 app.post('/changeWorkExperience', (req, resp) => {
   user.changeWorkExperience(req, resp);
 })
-
+/**
+ * 删除工作经历
+ */
 app.post('/delWorkExperience', (req, resp) => {
   user.delWorkExperience(req, resp);
 })
-
+/**
+ * 获取用户工作经历
+ */
 app.get('/getUserWork', (req, resp) => {
   user.getUserWork(req, resp);
 });
-
+/**
+ * 保存自我介绍信息
+ */
 app.post('/saveEvaluate', (req, resp) => {
   user.saveEvaluate(req, resp);
 });
-
+/**
+ * 获取用户在线简历信息
+ */
 app.get('/getUserResume', (req, resp) => {
   user.getUserResume(req, resp);
 })
-
+/**
+ * 获取头像
+ */
 app.get('/getAvar', (req, resp) => {
   user.getAvar(req, resp);
 })
-
 const openData = require('./openData');
-
+/**
+ * 获取城市信息
+ */
 app.get("/getCity", (req, resp) => {
   openData.getCity(req, resp);
 });
-
+/**
+ * 获取学校信息
+ */
 app.get("/getSchool", (req, resp) => {
   openData.getSchool(req, resp);
 });
-
+/**
+ * 获取专业信息
+ */
 app.get("/getMajor", (req, resp) => {
   openData.getMajor(req, resp);
 });
 
 const msg = require('./msg');
+/**
+ * 获取消息列表
+ */
 app.post("/getMessageList", (req, resp) => {
   msg.getMessageList(req, resp);
 });
-
+/**
+ * 获取消息记录
+ */
 app.post("/getMessage", (req, resp) => {
   msg.getMessage(req, resp);
 })
-
+/**
+ * 保存消息列表
+ */
 app.post("/saveMessageList", (req, resp) => {
   msg.saveMessageList(req, resp);
 })
-
+/**
+ * 获取面试邀请列表
+ */
 app.get('/getInviteList', (req, resp) => {
   msg.getInviteList(req, resp);
 })
-
+/**
+ * 更新面试邀请状态
+ */
 app.get('/updateInvite', (req, resp) => {
   msg.updateInvite(req, resp);
 })
-
+/**
+ * 获取单个面试邀请信息
+ */
 app.post('/getOnceInvite', (req, resp) => {
   msg.getOnceInvite(req, resp);
 })
 
 const jobs = require('./jobs');
+/**
+ * 获取
+ */
 app.post('/getPracticeJobs', (req, resp) => {
   jobs.getPracticeJobs(req, resp);
 })

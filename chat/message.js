@@ -2,8 +2,8 @@ const fs = require('fs');
 const path = require('path');
 const mysqlOpt = require('../util/mysqlOpt');
 const msgResult = require('../module/msgResult');
-const util = require('../util/util');
 
+// 保存消息记录
 function save (msg, client, to, time, type, read, invite_id) {
   let data = {
     data: msg,
@@ -34,6 +34,7 @@ function save (msg, client, to, time, type, read, invite_id) {
   }
 }
 
+// 更新消息为已读
 function updateRead (client, to) {
   let savePath = path.join(__dirname, '../static/chats');
   if (fs.existsSync(`${savePath}/${client}_${to}.json`)) {
@@ -55,6 +56,7 @@ function updateRead (client, to) {
   }
 }
 
+// 新增面试邀请
 let invitation = (client, to, time, invite_id, other) => {
   queryJob();
   function queryJob () {
