@@ -289,8 +289,9 @@ let getJobDetail = (req, resp) => {
   console.log('用户请求：getJobDetail');
 
   mysqlOpt.exec(
-    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name, u.position as position, u.avatarUrl, (select job_id from collect where job_id = ? and unionid = ?) as col_job_id
-    from jobs as job, company as comp, user as u, collect as col
+    `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name, u.position as position, u.avatarUrl, collect.job_id
+    from jobs as job, company as comp, user as u
+    left join collect on collect.job_id = ? and collect.unionid = ?
     where job.job_id = ? and job.company_id = comp.company_id and job.publisher_id = u.unionid limit 1`,
     mysqlOpt.formatParams(job_id, unionid, job_id),
     (res) => {
