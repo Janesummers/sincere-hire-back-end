@@ -4,6 +4,7 @@ const msgResult = require('./msgResult');
 const https = require('https');
 const fs = require('fs');
 const path = require('path');
+const util = require('../util/util');
 
 
 
@@ -298,7 +299,7 @@ var getUserEducation = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getUserEducation')
+  console.log('time: ' + util.getTime() +  ' 用户请求：getUserEducation')
 
   mysqlOpt.exec(
     `select * from user_education
@@ -355,7 +356,7 @@ var changeEducation = (req, resp) => {
     edu_id
   } = qs.parse(req.body);
 
-  console.log('用户请求：changeEducation')
+  console.log('time: ' + util.getTime() +  ' 用户请求：changeEducation')
 
   mysqlOpt.exec(
     `update user_education
@@ -383,7 +384,7 @@ var delEducation = (req, resp) => {
     edu_id
   } = qs.parse(req.body);
 
-  console.log('用户请求：delEducation')
+  console.log('time: ' + util.getTime() +  ' 用户请求：delEducation')
 
   mysqlOpt.exec(
     `delete from user_education
@@ -406,7 +407,7 @@ var getUserInfo = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getUserInfo')
+  console.log('time: ' + util.getTime() +  ' 用户请求：getUserInfo')
 
   getInfo();
 
@@ -418,7 +419,7 @@ var getUserInfo = (req, resp) => {
       mysqlOpt.formatParams(unionid),
       (res) => {
         let info = JSON.parse(JSON.stringify(res));
-        console.log(info[0])
+        console.log('取得用户数据：', info[0])
         getOnceEducation(info[0]);
       },
       e => {
@@ -572,7 +573,7 @@ var getUserWork = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getUserWork')
+  console.log('time: ' + util.getTime() +  ' 用户请求：getUserWork')
 
   mysqlOpt.exec(
     `select * from work_experience
@@ -596,7 +597,7 @@ var saveEvaluate = (req, resp) => {
     return;
   }
   let query = qs.parse(req.body);
-  console.log('用户请求：saveEvaluate');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveEvaluate');
 
   mysqlOpt.exec(
     `update user set advantage = ?
@@ -619,7 +620,7 @@ let getUserResume = (req, resp) => {
     return;
   }
   let query = req.query;
-  console.log('用户请求：getUserResume');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getUserResume');
   
   let getUserEdu = new Promise((resolve, reject) => {
     mysqlOpt.exec(
@@ -709,7 +710,7 @@ let getAvar = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getAvar')
+  console.log('time: ' + util.getTime() +  ' 用户请求：getAvar')
   let id = req.query.id;
 
   mysqlOpt.exec(

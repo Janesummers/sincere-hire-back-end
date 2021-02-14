@@ -3,10 +3,11 @@ const fs = require('fs');
 const path = require('path');
 const msgResult = require('./msgResult');
 const mysqlOpt = require('../util/mysqlOpt');
+const util = require('../util/util');
 
 var saveJobInfo = (req, resp) => {
   let query = qs.parse(req.body)
-  console.log('用户请求：saveJobInfo');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveJobInfo');
   let {
     id,
     position_window,
@@ -39,7 +40,7 @@ var saveJobInfo = (req, resp) => {
 }
 
 var saveJobs = () => {
-  console.log('用户请求：saveJobs');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveJobs');
   // console.log('路径', __dirname)
   let jobs = fs.readFileSync(path.join(__dirname, '../static/newJob.json'), {encoding: 'utf8'})
   jobs = JSON.parse(jobs).data.results;
@@ -214,7 +215,7 @@ var saveJobs = () => {
 
 var saveTopic = (req, resp) => {
   let query = qs.parse(req.body)
-  console.log('用户请求：saveTopic');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveTopic');
   let {
     content,
     title,

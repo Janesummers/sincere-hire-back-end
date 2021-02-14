@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "static")));
 app.disable('x-powered-by');
 
-websocket.runServer();
+// websocket.runServer();
 
 
 /**
@@ -282,6 +282,50 @@ app.get('/getEpidemic', (req, resp) => {
   epidemic.getEpidemic(req, resp);
 })
 
+
+app.get('/test', (req, resp) => {
+  let url = 'https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid=wx2bca6a5670f63aee&secret=0626d7fe02603759302a5079564d8389'
+  let getToken = new Promise((resolve, reject) => {
+    https.get(url, data => {
+      var str="";
+      data.on("data", (chunk) => {
+          str+=chunk; //监听数据响应，拼接数据片段
+      })
+      data.on("end",() => {
+        console.log(str.toString())
+        let access_token = JSON.parse(str.toString());
+        console.log('access_token', access_token);
+        resolve(access_token.access_token)
+        // console.log(code2Session.openid)
+      })
+    })
+  })
+  getToken.then(res => {
+    return new Promise((resolve, reject) => {
+      let query = `db.collection('goods').where({_id: '1329'}).get()`
+      let body = JSON.stringify({
+        env: 'red-packet-c1875',
+        query
+      });
+      let url = `https://api.weixin.qq.com/tcb/databasequery?access_token=${res}`
+      let options = {
+        'method': 'POST',
+        url,
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body
+      };
+      request(options, (error, response) => {
+        if (error) reject(new Error(error));
+        resolve(response.body)
+        console.log(response.body);
+      });
+    })
+  }).then(res => {
+    resp.json(msgResult.msg(res));
+  }).catch(e => console.log(e))
+})
 
 
 app.listen(8888, () => {

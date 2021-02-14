@@ -4,6 +4,7 @@ const msgResult = require('./msgResult');
 const Base64 = require('js-base64').Base64;
 const path = require('path');
 const fs = require('fs');
+const util = require('../util/util');
 
 var getMessageList = (req, resp) => {
   var params = qs.parse(req.body);
@@ -35,7 +36,7 @@ var getMessage = (req, resp) => {
   }
   let id = Base64.encode(params.id);
 
-  console.log('用户请求：getMessage');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getMessage');
 
   let filePath = path.join(__dirname, '../static/chats')
 
@@ -78,7 +79,7 @@ var saveMessageList = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：saveMessageList');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveMessageList');
 
   let {
     id,
@@ -147,7 +148,7 @@ let getInviteList = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getInviteList');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getInviteList');
 
   mysqlOpt.exec(
     `select invite.*, u.nickname as recruiter_name, u.position, u.avatarUrl
@@ -172,7 +173,7 @@ let getOnceInvite = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getOnceInvite');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getOnceInvite');
 
   let id = qs.parse(req.body).id;
 
@@ -199,7 +200,7 @@ let updateInvite = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getOnceInvite');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getOnceInvite');
 
   let {
     id,

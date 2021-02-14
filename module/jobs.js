@@ -10,7 +10,7 @@ var getPracticeJobs = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getPracticeJobs');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getPracticeJobs');
   let {
     emplType,
     num = 10,
@@ -53,7 +53,7 @@ let searchJob = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：searchJob');
+  console.log('time: ' + util.getTime() +  ' 用户请求：searchJob');
   let {
     keyWord,
     num = 10,
@@ -86,7 +86,7 @@ let getCollect = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getCollect');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getCollect');
 
   mysqlOpt.exec(
     `select job_id from collect where unionid = ?`,
@@ -110,7 +110,7 @@ let getUserCollect = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getUserCollect');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getUserCollect');
 
   mysqlOpt.exec(
     `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name
@@ -136,7 +136,7 @@ let setCollect = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：setCollect');
+  console.log('time: ' + util.getTime() +  ' 用户请求：setCollect');
   let {
     job_id,
     collectData
@@ -183,7 +183,7 @@ let saveJob = (req, resp) => {
 
   let data = qs.parse(req.body);
 
-  console.log('用户请求：saveJob');
+  console.log('time: ' + util.getTime() +  ' 用户请求：saveJob');
 
   let t = util.getTime();
   let d = new Date(t);
@@ -260,7 +260,7 @@ let getMyRelease = (req, resp) => {
   num = parseInt(num);
   page = parseInt(page);
 
-  console.log('用户请求：getMyRelease');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getMyRelease');
 
   mysqlOpt.exec(
     `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type
@@ -286,7 +286,7 @@ let getJobDetail = (req, resp) => {
 
   let job_id = qs.parse(req.body).job_id;
 
-  console.log('用户请求：getJobDetail');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getJobDetail');
 
   mysqlOpt.exec(
     `select job.*, comp.company_name, comp.size as company_size, comp.type as company_type, u.nickname as publisher_name, u.position as position, u.avatarUrl, collect.job_id

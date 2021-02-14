@@ -1,6 +1,7 @@
 const qs = require('qs');
 const msgResult = require('./msgResult');
 const mysqlOpt = require('../util/mysqlOpt');
+const util = require('../util/util');
 
 let getHotTopic = (req, resp) => {
   let unionid = req.query.unionid;
@@ -16,7 +17,7 @@ let getHotTopic = (req, resp) => {
   num = parseInt(num);
   page = parseInt(page);
 
-  console.log('用户请求：getHotTapic');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getHotTapic');
   
   mysqlOpt.exec(
     `
@@ -45,7 +46,7 @@ let updateTopicRead = (req, resp) => {
     idx
   } = req.query;
 
-  console.log('用户请求：updateTopicRead');
+  console.log('time: ' + util.getTime() +  ' 用户请求：updateTopicRead');
   
   mysqlOpt.exec(
     `
@@ -76,7 +77,7 @@ let commitAnswer = (req, resp) => {
   } = qs.parse(req.body);
   idx = parseInt(idx);
 
-  console.log('用户请求：commitAnswer');
+  console.log('time: ' + util.getTime() +  ' 用户请求：commitAnswer');
 
   let updateAnswerNum = new Promise((resolve, reject) => {
     mysqlOpt.exec(
@@ -139,7 +140,7 @@ let getAnswerList = (req, resp) => {
   page = parseInt(page);
   num = parseInt(num);
 
-  console.log('用户请求：getAnswerList');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getAnswerList');
   
   mysqlOpt.exec(
     `
@@ -171,7 +172,7 @@ let attentionTopic = (req, resp) => {
   } = req.query;
   idx = parseInt(idx);
 
-  console.log('用户请求：attentionTopic');
+  console.log('time: ' + util.getTime() +  ' 用户请求：attentionTopic');
   
   mysqlOpt.exec(
     `
@@ -202,7 +203,7 @@ let cancelAttention = (req, resp) => {
   } = req.query;
   idx = parseInt(idx);
 
-  console.log('用户请求：cancelAttention');
+  console.log('time: ' + util.getTime() +  ' 用户请求：cancelAttention');
   
   mysqlOpt.exec(
     `
@@ -233,7 +234,7 @@ let getOnceAttention = (req, resp) => {
   } = req.query;
   idx = parseInt(idx);
 
-  console.log('用户请求：cancelAttention');
+  console.log('time: ' + util.getTime() +  ' 用户请求：cancelAttention');
   
   mysqlOpt.exec(
     `
@@ -266,7 +267,7 @@ let getAttentionList = (req, resp) => {
   page = parseInt(page);
   num = parseInt(num);
 
-  console.log('用户请求：getAttentionList');
+  console.log('time: ' + util.getTime() +  ' 用户请求：getAttentionList');
   
   mysqlOpt.exec(
     `

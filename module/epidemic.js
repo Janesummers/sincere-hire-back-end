@@ -1,5 +1,6 @@
 const https = require('https');
 const msgResult = require('./msgResult');
+const util = require('../util/util');
 
 let getEpidemic = (req, resp) => {
   let unionid = req.query.unionid;
@@ -8,7 +9,7 @@ let getEpidemic = (req, resp) => {
     return;
   }
 
-  console.log('用户请求：getEpidemic');
+  console.log(util.getTime() + ' 用户请求：getEpidemic');
 
   let url = 'https://aweme.snssdk.com/web/api/v2/special/pneumonia/map/?forum_id=1656784762444839&is_web_refresh=1&api_version=6'
   
