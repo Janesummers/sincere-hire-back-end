@@ -12,7 +12,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, "static")));
 app.disable('x-powered-by');
 
-// websocket.runServer();
+websocket.runServer();
 
 
 /**

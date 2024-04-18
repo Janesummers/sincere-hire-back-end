@@ -13,7 +13,7 @@ var login = (req, resp) => {
   let data = qs.parse(req.body);
   let code = data.code;
   let code2Session;
-  let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=cd00a7c8648a2f9de2bbf6fdd130aa35&js_code=${code}&grant_type=authorization_code`;
+  let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=dd1ef40f7fea13fac2f126f1ef4c54dd&js_code=${code}&grant_type=authorization_code`;
   
   getSessionKey();
   function getSessionKey (id) {
@@ -85,6 +85,7 @@ var login = (req, resp) => {
     var codes = '';
 
     try {
+      console.log("妈卖批", encryptedData, iv);
       codes = pc.decryptData(encryptedData , iv);
     } catch (e) {
       // console.log('重复申请引发错误，重新获取');
