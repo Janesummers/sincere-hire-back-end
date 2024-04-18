@@ -1,5 +1,13 @@
-const mysql = require('mysql');
-
+const os = require('os');
+console.log('os', os.type());
+let mysql = require('mysql');
+if (os.type() == 'Darwin') {
+	//mac
+  mysql = require('mysql2');
+}
+if (os.type() == 'Linux') {
+	//Linux平台
+}
 let pool = mysql.createPool({
   host: '127.0.0.1',
   user: 'root',
