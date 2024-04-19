@@ -13,10 +13,11 @@ var login = (req, resp) => {
   let data = qs.parse(req.body);
   let code = data.code;
   let code2Session;
-  let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=dd1ef40f7fea13fac2f126f1ef4c54dd&js_code=${code}&grant_type=authorization_code`;
+  let url = `https://api.weixin.qq.com/sns/jscode2session?appid=wx2bca6a5670f63aee&secret=993e926ab9679531fb2a612190eab04d&js_code=${code}&grant_type=authorization_code`;
   
   getSessionKey();
   function getSessionKey (id) {
+    console.log('id', id);
     https.get(url, data => {
       var str="";
       data.on("data",function(chunk){

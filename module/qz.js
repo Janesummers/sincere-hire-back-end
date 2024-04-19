@@ -6,6 +6,8 @@ const cookieParser = require('cookie-parser');
 const websocket = require('../chat/wss.js');
 const multer  = require('multer')
 const upload = multer({ dest: './tmp/' })
+const msgResult = require('./msgResult');
+const util = require('../util/util');
 
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(cookieParser());
@@ -280,6 +282,11 @@ app.post('/getAttentionList', (req, resp) => {
 const epidemic = require('./epidemic');
 app.get('/getEpidemic', (req, resp) => {
   epidemic.getEpidemic(req, resp);
+})
+
+app.post('/log', (req, resp) => {
+  console.log(`${util.getTime()} 用户请求：log，${req.headers.token}，${JSON.stringify(req.headers)}`);
+  resp.json(msgResult.msg({status: '成功'}));
 })
 
 
